@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlatformGenerator : MonoBehaviour {
 
     [SerializeField] GameObject platformParent;
+
     [SerializeField] GameObject greenPlatform;
-    GameObject platform;
+    [SerializeField] GameObject brownPlatform;
 
     [SerializeField] float currentY = 0;
     float offset;
@@ -15,7 +16,7 @@ public class PlatformGenerator : MonoBehaviour {
     void Start() {
         // Initialize boundaries
         topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        offset = 0.66f;
+        offset = 0.85f;
 
         // Initialize platforms
         GeneratePlatform(20);
@@ -26,6 +27,17 @@ public class PlatformGenerator : MonoBehaviour {
             // Calculate platform x and y coordinates
             float distX = Random.Range(topLeft.x + offset, -topLeft.x - offset);
             float distY = Random.Range(0.5f, 2.5f);
+            //float distY = 0f;
+
+            // Create brown platforms (Breakable)
+            int randomBrownPlatform = Random.Range(0, 9);
+            if (randomBrownPlatform == 2) {
+                float brownDistX = Random.Range(topLeft.x + offset, -topLeft.x - offset);
+                float brownDistY = Random.Range(currentY + 1, currentY + distY - 1);
+                Vector3 brownPlatformPos = new Vector3(brownDistX, brownDistY, 0);
+                GameObject brownPlatformGO = Instantiate(brownPlatform, brownPlatformPos, Quaternion.identity);
+                brownPlatformGO.transform.SetParent(platformParent.transform, false);
+            }
 
             // Create green platforms
             currentY += distY;
@@ -34,7 +46,7 @@ public class PlatformGenerator : MonoBehaviour {
             int randomPlatform = 0;
 
             if (randomPlatform == 0) {
-                platform = Instantiate(greenPlatform, platformPos, Quaternion.identity);
+                GameObject platform = Instantiate(greenPlatform, platformPos, Quaternion.identity);
                 platform.transform.SetParent(platformParent.transform, false);
             }
 

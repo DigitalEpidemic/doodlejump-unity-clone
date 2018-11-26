@@ -5,6 +5,9 @@ using UnityEngine;
 public class Platform : MonoBehaviour {
 
     [SerializeField] float jumpForce = 20f;
+    [SerializeField] Collider2D[] colliders;
+    [SerializeField] float boxX=2f, boxY=1f;
+
     float destroyDistance;
     bool createNewPlatform = false;
 
@@ -18,6 +21,15 @@ public class Platform : MonoBehaviour {
     }
 
     void FixedUpdate() {
+
+        // Prevent spawn overlapping (COMMENT OUT BEFORE DEBUGGING WITH LOTS OF PLATFORMS)
+        colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(boxX, boxY), 0);
+        if (colliders.Length > 1 && colliders[0].CompareTag("Platform") && colliders[1].CompareTag("Platform")) {
+            Debug.Log("Collided with " + colliders[0].name + " and " + colliders[1].name);
+            gameController.GetComponent<PlatformGenerator>().GeneratePlatform(1);
+            Destroy(gameObject);
+        }
+
         // Platform out of screen
         if (transform.position.y - Camera.main.transform.position.y < destroyDistance) {
             // Create new platform
@@ -72,8 +84,8 @@ public class Platform : MonoBehaviour {
                 //GetComponent<AudioSource>().Play();
 
                 // if gameobject has animation; Like spring, trampoline and etc...
-                if (GetComponent<Animator>())
-                    GetComponent<Animator>().SetBool("Active", true);
+                //if (GetComponent<Animator>())
+                //    GetComponent<Animator>().SetBool("Active", true);
 
                 // Check platform type
 

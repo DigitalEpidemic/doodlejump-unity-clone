@@ -204,9 +204,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 2.6
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a1a5cb84d2615b245808d714fdbfc776, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -219,7 +219,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 433876067}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a1a5cb84d2615b245808d714fdbfc776, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -303,6 +303,10 @@ Prefab:
     - target: {fileID: 1377460780600002, guid: d4de1619045341d4bb75df3782a178cb, type: 2}
       propertyPath: m_Name
       value: StartingGreenPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377460780600002, guid: d4de1619045341d4bb75df3782a178cb, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4de1619045341d4bb75df3782a178cb, type: 2}
@@ -657,6 +661,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformParent: {fileID: 1895516987}
   greenPlatform: {fileID: 1377460780600002, guid: d4de1619045341d4bb75df3782a178cb,
+    type: 2}
+  brownPlatform: {fileID: 1482094527215570, guid: 81a398c5dfc6c37448e5738e77bf52cf,
     type: 2}
   currentY: -7.5
 --- !u!4 &1853671257

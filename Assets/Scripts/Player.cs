@@ -6,8 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
     [SerializeField] float movementSpeed = 10f;
-
-    //SpriteRenderer spriteRenderer;
+    
     BoxCollider2D boxCollider;
     float movement = 0f;
 
@@ -24,16 +23,14 @@ public class Player : MonoBehaviour {
     }
 	
 	void Update () {
-        //movement = Input.GetAxis("Horizontal") * movementSpeed;
         if (enableControls) {
-            movement = Input.acceleration.x * movementSpeed;
+            //movement = Input.acceleration.x * movementSpeed;
+            movement = Input.GetAxis("Horizontal") * movementSpeed;
 
             if (movement >= 0.1) {
                 transform.localScale = new Vector3(-playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
-                //spriteRenderer.flipX = true;
             } else if (movement <= -0.1) {
                 transform.localScale = new Vector3(playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
-                //spriteRenderer.flipX = false;
             }
         }
 	}
@@ -43,7 +40,7 @@ public class Player : MonoBehaviour {
         velocity.x = movement;
         rb.velocity = velocity;
 
-        // Player wrap
+        // Player wall to wall teleport
         Vector3 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         float offset = 0.5f;
 
