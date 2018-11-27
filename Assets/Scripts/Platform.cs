@@ -38,14 +38,14 @@ public class Platform : MonoBehaviour {
                 createNewPlatform = true;
             }
 
-            // Deactive Collider and effector
+            // Disable Collider and effector
             GetComponent<EdgeCollider2D>().enabled = false;
             GetComponent<PlatformEffector2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
 
-            // Deactive collider and effector if gameobject has child
+            // Disable collider and effector if gameobject has child
             if (transform.childCount > 0) {
-                if (transform.GetChild(0).GetComponent<Platform>()) // if child is platform
+                if (transform.GetChild(0).GetComponent<Platform>()) // If child is platform
                 {
                     transform.GetChild(0).GetComponent<EdgeCollider2D>().enabled = false;
                     transform.GetChild(0).GetComponent<PlatformEffector2D>().enabled = false;
@@ -64,7 +64,7 @@ public class Platform : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        // Add force when player fall from top
+        // Add force when player falls from the top
         if (collision.relativeVelocity.y <= 0f) {
             Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
 
@@ -83,9 +83,10 @@ public class Platform : MonoBehaviour {
                 // Play jump sound
                 //GetComponent<AudioSource>().Play();
 
-                // if gameobject has animation; Like spring, trampoline and etc...
-                //if (GetComponent<Animator>())
-                //    GetComponent<Animator>().SetBool("Active", true);
+                // If current gameObject has animation (Spring, trampoline, etc.)
+                if (gameObject.name != "BrownPlatform(Clone)" && gameObject.GetComponent<Animator>() != null) {
+                    GetComponent<Animator>().SetTrigger("Active");
+                }
 
                 // Check platform type
 
