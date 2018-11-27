@@ -14,7 +14,11 @@ public class PlatformGenerator : MonoBehaviour {
     float offset;
     Vector3 topLeft;
 
+    GameController gameController;
+
     void Start() {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
         // Initialize boundaries
         topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         offset = 0.85f;
@@ -48,7 +52,7 @@ public class PlatformGenerator : MonoBehaviour {
             GameObject platform;
 
             // Blue platform (Moving)
-            if (randomPlatform == 2) {
+            if (randomPlatform == 2 && gameController.score >= 1000) { // Required score to start spawning blue platforms
                 platform = Instantiate(bluePlatform, platformPos, Quaternion.identity);
 
             // Green platform

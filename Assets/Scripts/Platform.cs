@@ -6,13 +6,13 @@ public class Platform : MonoBehaviour {
 
     [SerializeField] float jumpForce = 20f;
     [SerializeField] Collider2D[] colliders;
-    [SerializeField] float boxX=2f, boxY=1f;
+    [SerializeField] float boxX = 2f, boxY = 1f;
 
     float destroyDistance;
     bool createNewPlatform = false;
 
     GameObject gameController;
-    
+
     void Start() {
         gameController = GameObject.Find("GameController");
 
@@ -25,7 +25,7 @@ public class Platform : MonoBehaviour {
         // Prevent spawn overlapping (COMMENT OUT BEFORE DEBUGGING WITH LOTS OF PLATFORMS)
         colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(boxX, boxY), 0);
         if (colliders.Length > 1 && colliders[0].CompareTag("Platform") && colliders[1].CompareTag("Platform")) {
-            Debug.Log("Collided with " + colliders[0].name + " and " + colliders[1].name);
+            //Debug.Log("Collided with " + colliders[0].name + " and " + colliders[1].name);
             gameController.GetComponent<PlatformGenerator>().GeneratePlatform(1);
             Destroy(gameObject);
         }

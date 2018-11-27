@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
 
     [SerializeField] Text scoreText;
 
-    int score;
+    public int score;
     float maxHeight;
     bool gameOver = false;
 
