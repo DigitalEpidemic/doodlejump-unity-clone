@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
     [SerializeField] float movementSpeed = 10f;
-    
+
     BoxCollider2D boxCollider;
     float movement = 0f;
 
@@ -15,25 +14,24 @@ public class Player : MonoBehaviour {
 
     public bool enableControls = false;
 
-    void Start () {
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
-        //spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerLocalScale = transform.localScale;
     }
-	
-	void Update () {
+
+    void Update() {
         if (enableControls) {
-            movement = Input.acceleration.x * movementSpeed;
+            movement = Mathf.RoundToInt(Input.acceleration.x * movementSpeed);
             //movement = Input.GetAxis("Horizontal") * movementSpeed;
 
-            if (movement >= 0.1) {
+            if (movement >= 1) {
                 transform.localScale = new Vector3(-playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
-            } else if (movement <= -0.1) {
+            } else if (movement <= -1) {
                 transform.localScale = new Vector3(playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
             }
         }
-	}
+    }
 
     void FixedUpdate() {
         Vector2 velocity = rb.velocity;
