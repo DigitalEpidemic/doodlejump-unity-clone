@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
@@ -62,6 +63,10 @@ public class GameController : MonoBehaviour {
 
         // Animate/Enable GameOver panel
         gameOverPanel.SetActive(true);
+    }
+
+    public void PlayAgainButton() {
+        SceneManager.LoadScene("Game");
     }
 
 }
