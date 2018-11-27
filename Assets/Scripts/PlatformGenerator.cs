@@ -8,6 +8,7 @@ public class PlatformGenerator : MonoBehaviour {
 
     [SerializeField] GameObject greenPlatform;
     [SerializeField] GameObject brownPlatform;
+    [SerializeField] GameObject bluePlatform;
 
     [SerializeField] float currentY = 0;
     float offset;
@@ -39,16 +40,23 @@ public class PlatformGenerator : MonoBehaviour {
                 brownPlatformGO.transform.SetParent(platformParent.transform, false);
             }
 
-            // Create green platforms
+            // Create other platforms
             currentY += distY;
             Vector3 platformPos = new Vector3(distX, currentY, 0);
             //int randomPlatform = Random.Range(1, 10);
-            int randomPlatform = 0;
+            int randomPlatform = Random.Range(0, 9);
+            GameObject platform;
 
-            if (randomPlatform == 0) {
-                GameObject platform = Instantiate(greenPlatform, platformPos, Quaternion.identity);
-                platform.transform.SetParent(platformParent.transform, false);
+            // Blue platform (Moving)
+            if (randomPlatform == 2) {
+                platform = Instantiate(bluePlatform, platformPos, Quaternion.identity);
+
+            // Green platform
+            } else {
+                platform = Instantiate(greenPlatform, platformPos, Quaternion.identity);
             }
+
+            platform.transform.SetParent(platformParent.transform, false); // Set parent of platform to empty GameObject for organization
 
 
         }
