@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     [SerializeField] Text scoreText;
+    [SerializeField] Animator platformsAnim;
+    [SerializeField] GameObject gameOverPanel;
 
     public int score;
     float maxHeight;
@@ -35,7 +37,13 @@ public class GameController : MonoBehaviour {
             }
 
             // TODO Check if player has fallen
-            
+            if (player.transform.position.y - Camera.main.transform.position.y < GetDestroyDistance()) {
+                // TODO Play game over sound
+
+                // Game Over
+                EndGame();
+                gameOver = true;
+            }
         }
 
         score = (int)(maxHeight * 50);
@@ -45,4 +53,15 @@ public class GameController : MonoBehaviour {
     public float GetDestroyDistance() {
         return cameraPos.y + topLeft.y -9.5f;
     }
+
+    void EndGame() {
+        //Debug.Log("Game is over");
+
+        // Animate platforms
+        platformsAnim.SetTrigger("GameOver");
+
+        // Animate/Enable GameOver panel
+        gameOverPanel.SetActive(true);
+    }
+
 }
