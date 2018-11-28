@@ -9,6 +9,7 @@ public class PlatformGenerator : MonoBehaviour {
     [SerializeField] GameObject greenPlatform;
     [SerializeField] GameObject brownPlatform;
     [SerializeField] GameObject bluePlatform;
+    [SerializeField] GameObject whitePlatform;
 
     [SerializeField] GameObject spring;
 
@@ -54,7 +55,10 @@ public class PlatformGenerator : MonoBehaviour {
             if (randomPlatform == 2 && gameController.score >= 2500) { // Required score to start spawning blue platforms
                 platform = Instantiate(bluePlatform, platformPos, Quaternion.identity);
 
-            // Green platform
+            // White platform
+            } else if (randomPlatform == 3 && gameController.score >= 10000) {
+                platform = Instantiate(whitePlatform, platformPos, Quaternion.identity);
+                // Green platform
             } else {
                 platform = Instantiate(greenPlatform, platformPos, Quaternion.identity);
             }

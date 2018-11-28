@@ -1647,6 +1647,8 @@ MonoBehaviour:
     type: 2}
   bluePlatform: {fileID: 1377460780600002, guid: 74de6ee915aae5645b7e09db1d47c59f,
     type: 2}
+  whitePlatform: {fileID: 1499852753596568, guid: 550cee26e42e38242a9507ed7c4b6a21,
+    type: 2}
   spring: {fileID: 1851530313961004, guid: f16c44b6a298ba94586086f62d3160ba, type: 2}
   currentY: -7.5
 --- !u!4 &1853671257
@@ -1764,7 +1766,7 @@ RectTransform:
   m_Children:
   - {fileID: 1027090017}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1828,7 +1830,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4062134954940552, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4062134954940552, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1856,7 +1858,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4062134954940552, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
