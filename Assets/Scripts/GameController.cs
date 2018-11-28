@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-
     [SerializeField] Text scoreText;
     [SerializeField] Animator platformsAnim;
     [SerializeField] GameObject gameOverPanel;
@@ -52,7 +51,7 @@ public class GameController : MonoBehaviour {
     }
 
     public float GetDestroyDistance() {
-        return cameraPos.y + topLeft.y -9.5f;
+        return cameraPos.y + topLeft.y -9.05f;
     }
 
     void EndGame() {

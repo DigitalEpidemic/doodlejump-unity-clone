@@ -20,10 +20,7 @@ public class BrownPlatform : MonoBehaviour {
         if (collision.relativeVelocity.y <= 0f) {
             GetComponent<EdgeCollider2D>().enabled = false;
             GetComponent<PlatformEffector2D>().enabled = false;
-
-            if (GetComponent<Animator>()) {
-                GetComponent<Animator>().SetTrigger("Break");
-            }
+            
             fallDown = true;
 
 

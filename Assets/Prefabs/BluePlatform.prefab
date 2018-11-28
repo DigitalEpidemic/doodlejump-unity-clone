@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b83cac2d0a81c1428d24948168bc0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2.25
 --- !u!114 &114206594820891296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,7 +87,7 @@ MonoBehaviour:
   jumpForce: 16.5
   colliders: []
   boxX: 20
-  boxY: 2.25
+  boxY: 0.75
 --- !u!212 &212191770914580380
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -146,7 +147,7 @@ PlatformEffector2D:
     m_Bits: 4294967295
   m_RotationalOffset: 0
   m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
+  m_UseOneWayGrouping: 1
   m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0

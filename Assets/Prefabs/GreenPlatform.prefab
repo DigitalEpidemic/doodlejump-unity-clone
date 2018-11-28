@@ -74,7 +74,7 @@ MonoBehaviour:
   jumpForce: 16.5
   colliders: []
   boxX: 2
-  boxY: 2.25
+  boxY: 0.75
 --- !u!212 &212191770914580380
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -134,7 +134,7 @@ PlatformEffector2D:
     m_Bits: 4294967295
   m_RotationalOffset: 0
   m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
+  m_UseOneWayGrouping: 1
   m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0

@@ -18,20 +18,42 @@ public class Platform : MonoBehaviour {
 
         // Set distance to destroy the platforms out of screen
         destroyDistance = gameController.GetComponent<GameController>().GetDestroyDistance();
-        DestroyOverlap();
+        //DestroyOverlap();
     }
 
     void DestroyOverlap() {
         // Prevent spawn overlapping (COMMENT OUT BEFORE DEBUGGING WITH LOTS OF PLATFORMS)
         colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(boxX, boxY), 0);
-        DebugDrawBox(transform.position, new Vector2(boxX, boxY), 0, Color.red);
-        if (gameObject.name != "BrownPlatform(Clone)" && colliders.Length > 1 && colliders[0].CompareTag("Platform") && colliders[1].CompareTag("Platform")) {
-            //Debug.Log("Collided with " + colliders[0].name + " and " + colliders[1].name);
-            gameController.GetComponent<PlatformGenerator>().GeneratePlatform(1);
-            Destroy(gameObject);
-        } else if (gameObject.name == "BrownPlatform(Clone)" && colliders.Length > 1 && colliders[0].CompareTag("Platform") && colliders[1].CompareTag("Platform")) {
-            Destroy(gameObject);
+
+        //DebugDrawBox(transform.position, new Vector2(boxX, boxY), 0, Color.red);
+
+        if (gameObject.name == "Spring(Clone)" && colliders.Length >= 2 && transform.position.y >= Camera.main.transform.position.y + 12f) {
+            foreach (Collider2D col in colliders) {
+                if (col.name == "BrownPlatform(Clone)") {
+                    //print("Destroying brown platform because of spring");
+                    Destroy(col.gameObject);
+                }
+            }
         }
+
+        //if (gameObject.name == "BrownPlatform(Clone)" && colliders.Length > 1
+        //    && (colliders[0].name != "Doodler" && colliders[1].name != "Doodler")
+        //    && (colliders[0].name != "Spring(Clone)" || colliders[1].name != "Spring(Clone)")
+        //    && (colliders[0].name != "BluePlatform(Clone)" || colliders[1].name != "BluePlatform(Clone)")
+        //    && (colliders[0].name != "BrownPlatform(Clone)" || colliders[1].name != "BrownPlatform(Clone)")) {
+
+        //    print("destroying brown platform: " + transform.position);
+        //    Destroy(gameObject);
+        //}
+
+        //if (gameObject.name == "BluePlatform(Clone)") {
+        //    foreach (Collider2D col in colliders) {
+        //        if (col.name == "BrownPlatform(Clone)" && transform.position.y > Camera.main.transform.position.y + 12f) {
+        //            print("Destroying brown platform from loop");
+        //            Destroy(col.gameObject);
+        //        }
+        //    }
+        //}
     }
 
     void DebugDrawBox(Vector2 point, Vector2 size, float angle, Color color) {
@@ -51,7 +73,7 @@ public class Platform : MonoBehaviour {
         Debug.DrawLine(bottomRight, bottomLeft, color);
     }
 
-    void LateUpdate() {
+    void Update() {
         DestroyOverlap();
     }
 
@@ -73,7 +95,7 @@ public class Platform : MonoBehaviour {
             if (transform.childCount > 0) {
                 if (transform.GetChild(0).GetComponent<Platform>()) // If child is platform
                 {
-                    transform.GetChild(0).GetComponent<EdgeCollider2D>().enabled = false;
+                    //transform.GetChild(0).GetComponent<EdgeCollider2D>().enabled = false;
                     transform.GetChild(0).GetComponent<PlatformEffector2D>().enabled = false;
                     transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 }
@@ -110,7 +132,9 @@ public class Platform : MonoBehaviour {
                 //GetComponent<AudioSource>().Play();
 
                 // If current gameObject has animation (Spring, trampoline, etc.)
-                if (gameObject.name != "BrownPlatform(Clone)" && gameObject.GetComponent<Animator>() != null) {
+                if  (gameObject.GetComponent<Animator>() != null) { // (gameObject.name != "BrownPlatform(Clone)" &&
+                    boxX = 0f;
+                    boxY = 0f;
                     GetComponent<Animator>().SetTrigger("Active");
                 }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BluePlatform : MonoBehaviour {
 
+    [SerializeField] float speed = 2.25f;
     bool movingRight = true;
     float offset = 0.85f;
 
@@ -13,7 +14,7 @@ public class BluePlatform : MonoBehaviour {
         // Moving right
         if (movingRight) {
             if (transform.position.x < -topLeft.x - offset) {
-                transform.position += new Vector3(2.25f * Time.deltaTime, 0, 0);
+                transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
             } else {
                 movingRight = false;
             }
@@ -21,7 +22,7 @@ public class BluePlatform : MonoBehaviour {
         // Moving left
         } else {
             if (transform.position.x > topLeft.x + offset) {
-                transform.position -= new Vector3(2.25f * Time.deltaTime, 0, 0);
+                transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
             } else {
                 movingRight = true;
             }

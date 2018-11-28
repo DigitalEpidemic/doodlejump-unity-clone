@@ -15,6 +15,7 @@ public class PlatformGenerator : MonoBehaviour {
     GameObject randomObject;
 
     [SerializeField] float currentY = 0;
+    float previousY = 0;
     float offset;
     Vector3 topLeft;
 
@@ -28,35 +29,29 @@ public class PlatformGenerator : MonoBehaviour {
         offset = 0.85f;
 
         // Initialize platforms
-        GeneratePlatform(20);
+        GeneratePlatform(40);
     }
 
     public void GeneratePlatform(int numberOfPlatforms) {
         for (int i = 0; i < numberOfPlatforms; i++) {
             // Calculate platform x and y coordinates
             float distX = Random.Range(topLeft.x + offset, -topLeft.x - offset);
-            float distY = Random.Range(0.5f, 2.5f);
+            float distY = Random.Range(0.5f, 2.25f);
             //float distY = 0f;
-
-            // Create brown platforms (Breakable)
-            int randomBrownPlatform = Random.Range(0, 9);
-            //int randomBrownPlatform = 0;
-            if (randomBrownPlatform == 2) {
-                float brownDistX = Random.Range(topLeft.x + offset, -topLeft.x - offset);
-                float brownDistY = Random.Range(currentY + 1, currentY + distY - 1);
-                Vector3 brownPlatformPos = new Vector3(brownDistX, brownDistY, 0);
-                GameObject brownPlatformGO = Instantiate(brownPlatform, brownPlatformPos, Quaternion.identity);
-                brownPlatformGO.transform.SetParent(platformParent.transform, false);
-            }
-
+            
             // Create other platforms
             currentY += distY;
+
+            while (Mathf.Abs(currentY - previousY) < 1.5f) {
+                currentY += 0.01f;
+            }
+
             Vector3 platformPos = new Vector3(distX, currentY, 0);
             int randomPlatform = Random.Range(0, 9);
             GameObject platform;
 
             // Blue platform (Moving)
-            if (randomPlatform == 2 && gameController.score >= 1000) { // Required score to start spawning blue platforms
+            if (randomPlatform == 2 && gameController.score >= 2500) { // Required score to start spawning blue platforms
                 platform = Instantiate(bluePlatform, platformPos, Quaternion.identity);
 
             // Green platform
@@ -76,6 +71,20 @@ public class PlatformGenerator : MonoBehaviour {
                 }
 
             }
+
+            // Create brown platforms (Breakable)
+            int randomBrownPlatform = Random.Range(0, 6);
+            //int randomBrownPlatform = 2;
+            if (randomBrownPlatform == 2) {
+                float brownDistX = Random.Range(topLeft.x + offset, -topLeft.x - offset);
+                float randomOffset = Random.Range(-0.3f, 0.3f);
+                float brownDistY = currentY - Mathf.Abs((currentY - previousY) / 2) + randomOffset;
+                Vector3 brownPlatformPos = new Vector3(brownDistX, brownDistY, 0);
+                GameObject brownPlatformGO = Instantiate(brownPlatform, brownPlatformPos, Quaternion.identity);
+                brownPlatformGO.transform.SetParent(platformParent.transform, false);
+            }
+
+            previousY = currentY;
 
             //Debug.Log("Spawning a platform");
         }
