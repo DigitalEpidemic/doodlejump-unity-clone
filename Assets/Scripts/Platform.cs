@@ -129,8 +129,14 @@ public class Platform : MonoBehaviour {
                 // TODO Add EDITOR if statement
                 // Stop the player from dying before loading in Editor
                 if (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>() != null) {
-                    Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-                    player.enableControls = true;
+                    Player doodler = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                    Animator doodlerAnim = doodler.GetComponent<Animator>();
+
+                    doodler.enableControls = true;
+                    if (gameObject.name != "BrownPlatform(Clone)") {
+                        doodlerAnim.SetTrigger("Jump");
+                    }
+
                 }
 
                 Vector2 velocity = rb.velocity;
