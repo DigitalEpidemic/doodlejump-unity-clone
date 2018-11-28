@@ -36,6 +36,15 @@ public class Platform : MonoBehaviour {
             }
         }
 
+        if (gameObject.name == "Trampoline(Clone)" && colliders.Length >= 2 && transform.position.y >= Camera.main.transform.position.y + 12f) {
+            foreach (Collider2D col in colliders) {
+                if (col.name == "BrownPlatform(Clone)") {
+                    //print("Destroying brown platform because of trampoline");
+                    Destroy(col.gameObject);
+                }
+            }
+        }
+
         //if (gameObject.name == "BrownPlatform(Clone)" && colliders.Length > 1
         //    && (colliders[0].name != "Doodler" && colliders[1].name != "Doodler")
         //    && (colliders[0].name != "Spring(Clone)" || colliders[1].name != "Spring(Clone)")

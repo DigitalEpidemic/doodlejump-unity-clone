@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] Animator platformsAnim;
     [SerializeField] GameObject gameOverPanel;
 
-    public int score;
+    int score;
     float maxHeight;
     bool gameOver = false;
 
@@ -52,6 +52,10 @@ public class GameController : MonoBehaviour {
 
     public float GetDestroyDistance() {
         return cameraPos.y + topLeft.y -9.05f;
+    }
+
+    public int GetScore() {
+        return score;
     }
 
     void EndGame() {

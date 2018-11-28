@@ -24,9 +24,9 @@ public class Player : MonoBehaviour {
             //movement = Input.GetAxis("Horizontal") * movementSpeed;
 
             if (movement >= 1) {
-                transform.localScale = new Vector3(-playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
-            } else if (movement <= -1) {
                 transform.localScale = new Vector3(playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
+            } else if (movement <= -1) {
+                transform.localScale = new Vector3(-playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
             }
         }
     }

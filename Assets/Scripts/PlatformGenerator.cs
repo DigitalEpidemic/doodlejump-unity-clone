@@ -12,6 +12,7 @@ public class PlatformGenerator : MonoBehaviour {
     [SerializeField] GameObject whitePlatform;
 
     [SerializeField] GameObject spring;
+    [SerializeField] GameObject trampoline;
 
     GameObject randomObject;
 
@@ -52,11 +53,11 @@ public class PlatformGenerator : MonoBehaviour {
             GameObject platform;
 
             // Blue platform (Moving)
-            if (randomPlatform == 2 && gameController.score >= 2500) { // Required score to start spawning blue platforms
+            if (randomPlatform == 2 && gameController.GetScore() >= 2500) { // Required score to start spawning blue platforms
                 platform = Instantiate(bluePlatform, platformPos, Quaternion.identity);
 
             // White platform
-            } else if (randomPlatform == 3 && gameController.score >= 10000) {
+            } else if (randomPlatform == 3 && gameController.GetScore() >= 10000) {
                 platform = Instantiate(whitePlatform, platformPos, Quaternion.identity);
                 // Green platform
             } else {
@@ -71,6 +72,11 @@ public class PlatformGenerator : MonoBehaviour {
                 if (randomObjProb == 7) { // Create spring
                     Vector3 springPos = new Vector3(platformPos.x + 0.5f, platformPos.y + 0.2f, 0);
                     randomObject = Instantiate(spring, springPos, Quaternion.identity);
+                    randomObject.transform.parent = platform.transform; // Make the object a child of the platform
+
+                } else if (randomObjProb == 11) { // Create trampoline
+                    Vector3 trampolinePos = new Vector3(platformPos.x + 0.13f, platformPos.y + 0.18f, 0);
+                    randomObject = Instantiate(trampoline, trampolinePos, Quaternion.identity);
                     randomObject.transform.parent = platform.transform; // Make the object a child of the platform
                 }
 

@@ -1453,7 +1453,7 @@ RectTransform:
   - {fileID: 734641495}
   - {fileID: 173380193}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1612,6 +1612,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1814258622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1728982276780386, guid: bea854d6c54a1c94682c8336bd13cf6f,
+    type: 2}
+  m_PrefabInternal: {fileID: 2064357776}
+--- !u!95 &1814258627
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1814258622}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f2faafc124ae9840a2352807b9d822c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1853671255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,6 +1673,7 @@ MonoBehaviour:
   whitePlatform: {fileID: 1499852753596568, guid: 550cee26e42e38242a9507ed7c4b6a21,
     type: 2}
   spring: {fileID: 1851530313961004, guid: f16c44b6a298ba94586086f62d3160ba, type: 2}
+  trampoline: {fileID: 1665947251355514, guid: c828beb4e97f4784187169a728a19f99, type: 2}
   currentY: -7.5
 --- !u!4 &1853671257
 Transform:
@@ -1678,7 +1702,6 @@ MonoBehaviour:
   scoreText: {fileID: 289359948}
   platformsAnim: {fileID: 1895516989}
   gameOverPanel: {fileID: 173380192}
-  score: 0
 --- !u!1 &1891209860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,7 +1881,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4062134954940552, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062134954940552, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212437578033983174, guid: bea854d6c54a1c94682c8336bd13cf6f,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
