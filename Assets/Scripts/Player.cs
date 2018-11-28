@@ -6,7 +6,6 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     [SerializeField] float movementSpeed = 10f;
 
-    BoxCollider2D boxCollider;
     float movement = 0f;
 
     Rigidbody2D rb;
@@ -16,14 +15,13 @@ public class Player : MonoBehaviour {
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
         playerLocalScale = transform.localScale;
     }
 
     void Update() {
         if (enableControls) {
-            movement = Mathf.RoundToInt(Input.acceleration.x * movementSpeed);
-            //movement = Input.GetAxis("Horizontal") * movementSpeed;
+            //movement = Mathf.RoundToInt(Input.acceleration.x * movementSpeed);
+            movement = Input.GetAxis("Horizontal") * movementSpeed;
 
             if (movement >= 1) {
                 transform.localScale = new Vector3(-playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
@@ -46,23 +44,6 @@ public class Player : MonoBehaviour {
             transform.position = new Vector3(topLeft.x - offset, transform.position.y, transform.position.z);
         } else if (transform.position.x < topLeft.x - offset) {
             transform.position = new Vector3(-topLeft.x + offset, transform.position.y, transform.position.z);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("RightWall")) {
-            Vector3 newLocation = transform.position;
-            newLocation.x = 357.1f;
-            transform.position = newLocation;
-
-        } else if (collision.CompareTag("LeftWall")) {
-            Vector3 newLocation = transform.position;
-            newLocation.x = 362.9f;
-            transform.position = newLocation;
-
-        } else if (collision.CompareTag("Killer")) {
-            Debug.Log("You have died!");
-            boxCollider.isTrigger = true;
         }
     }
 }

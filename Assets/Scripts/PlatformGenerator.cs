@@ -40,6 +40,7 @@ public class PlatformGenerator : MonoBehaviour {
 
             // Create brown platforms (Breakable)
             int randomBrownPlatform = Random.Range(0, 9);
+            //int randomBrownPlatform = 0;
             if (randomBrownPlatform == 2) {
                 float brownDistX = Random.Range(topLeft.x + offset, -topLeft.x - offset);
                 float brownDistY = Random.Range(currentY + 1, currentY + distY - 1);
@@ -76,7 +77,7 @@ public class PlatformGenerator : MonoBehaviour {
 
             }
 
-
+            //Debug.Log("Spawning a platform");
         }
     }
 

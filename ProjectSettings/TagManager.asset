@@ -8,6 +8,7 @@ TagManager:
   - RightWall
   - LeftWall
   - Killer
+  - RandomObject
   layers:
   - Default
   - TransparentFX

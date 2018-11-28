@@ -18,22 +18,48 @@ public class Platform : MonoBehaviour {
 
         // Set distance to destroy the platforms out of screen
         destroyDistance = gameController.GetComponent<GameController>().GetDestroyDistance();
+        DestroyOverlap();
     }
 
-    void FixedUpdate() {
-
+    void DestroyOverlap() {
         // Prevent spawn overlapping (COMMENT OUT BEFORE DEBUGGING WITH LOTS OF PLATFORMS)
         colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(boxX, boxY), 0);
-        if (colliders.Length > 1 && colliders[0].CompareTag("Platform") && colliders[1].CompareTag("Platform")) {
+        //DebugDrawBox(transform.position, new Vector2(boxX, boxY), 0, Color.red);
+        if (gameObject.name != "BrownPlatform(Clone)" && colliders.Length > 1 && colliders[0].CompareTag("Platform") && colliders[1].CompareTag("Platform")) {
             //Debug.Log("Collided with " + colliders[0].name + " and " + colliders[1].name);
             gameController.GetComponent<PlatformGenerator>().GeneratePlatform(1);
             Destroy(gameObject);
+        } else if (gameObject.name == "BrownPlatform(Clone)" && colliders.Length > 1 && colliders[0].CompareTag("Platform") && colliders[1].CompareTag("Platform")) {
+            Destroy(gameObject);
         }
+    }
 
+    void DebugDrawBox(Vector2 point, Vector2 size, float angle, Color color) {
+        var orientation = Quaternion.Euler(0, 0, angle);
+
+        Vector2 right = orientation * Vector2.right * size.x / 2f;
+        Vector2 up = orientation * Vector2.up * size.y / 2f;
+
+        var topLeft = point + up - right;
+        var topRight = point + up + right;
+        var bottomLeft = point - up - right;
+        var bottomRight = point - up + right;
+
+        Debug.DrawLine(topLeft, topRight, color);
+        Debug.DrawLine(topRight, bottomRight, color);
+        Debug.DrawLine(bottomLeft, topLeft, color);
+        Debug.DrawLine(bottomRight, bottomLeft, color);
+    }
+
+    void LateUpdate() {
+        DestroyOverlap();
+    }
+
+    void FixedUpdate() {
         // Platform out of screen
         if (transform.position.y - Camera.main.transform.position.y < destroyDistance) {
             // Create new platform
-            if (name != "BrownPlatform(Clone)" && name != "Spring(Clone)" && name != "Trampoline(Clone)" && !createNewPlatform) {
+            if (gameObject.name != "BrownPlatform(Clone)" && gameObject.name != "Spring(Clone)" && gameObject.name != "Trampoline(Clone)" && !createNewPlatform) {
                 gameController.GetComponent<PlatformGenerator>().GeneratePlatform(1);
                 createNewPlatform = true;
             }

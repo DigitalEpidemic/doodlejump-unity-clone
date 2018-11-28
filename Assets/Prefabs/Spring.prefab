@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114272942915903150}
   m_Layer: 0
   m_Name: Spring
-  m_TagString: Untagged
+  m_TagString: RandomObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,8 +59,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.16207449, y: 0.109371915}
-  - {x: 0.15296021, y: 0.1093719}
+  - {x: -0.15768825, y: 0.2177756}
+  - {x: 0.15358685, y: 0.21777555}
 --- !u!95 &95969066658849010
 Animator:
   serializedVersion: 3

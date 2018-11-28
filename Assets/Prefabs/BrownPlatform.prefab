@@ -94,7 +94,7 @@ MonoBehaviour:
   jumpForce: -7
   colliders: []
   boxX: 2
-  boxY: 1
+  boxY: 1.5
 --- !u!114 &114927719847528130
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -85,8 +85,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 16.5
   colliders: []
-  boxX: 2
-  boxY: 1
+  boxX: 20
+  boxY: 1.5
 --- !u!212 &212191770914580380
 SpriteRenderer:
   m_ObjectHideFlags: 1
