@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 33
   colliders: []
-  boxX: 2
+  boxX: 1
   boxY: 1
 --- !u!212 &212462209119813236
 SpriteRenderer:

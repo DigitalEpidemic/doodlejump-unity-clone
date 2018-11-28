@@ -86,7 +86,7 @@ MonoBehaviour:
   jumpForce: 16.5
   colliders: []
   boxX: 20
-  boxY: 1.5
+  boxY: 2.25
 --- !u!212 &212191770914580380
 SpriteRenderer:
   m_ObjectHideFlags: 1
