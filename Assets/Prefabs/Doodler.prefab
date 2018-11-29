@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50981255455948206}
   - component: {fileID: 61874665125066176}
   - component: {fileID: 114732339195016072}
+  - component: {fileID: 95056212356689564}
   m_Layer: 0
   m_Name: Doodler
   m_TagString: Player
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1728982276780386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.3, z: 0}
+  m_LocalPosition: {x: -0.164, y: -5.685, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,7 +60,7 @@ Rigidbody2D:
   m_AngularDrag: 0
   m_GravityScale: 2.6
   m_Material: {fileID: 6200000, guid: a1a5cb84d2615b245808d714fdbfc776, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -75,10 +76,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.020880744, y: -0.44831866}
+  m_Offset: {x: 0.014703885, y: -0.7499998}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.75}
     oldSize: {x: 1.24, y: 1.2}
     newSize: {x: 1.24, y: 1.2}
     adaptiveTilingThreshold: 0.5
@@ -86,8 +87,26 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5588362, y: 0.25423205}
+  m_Size: {x: 0.54942846, y: 0.27722895}
   m_EdgeRadius: 0
+--- !u!95 &95056212356689564
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1728982276780386}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f2faafc124ae9840a2352807b9d822c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114732339195016072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +157,7 @@ SpriteRenderer:
   m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: 1b48b18e2f6f61244b256759f12d2ff2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.24, y: 1.2}
