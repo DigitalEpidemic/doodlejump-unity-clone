@@ -80,12 +80,12 @@ public class GameController : MonoBehaviour {
     }
 
     public void PauseButton() {
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; // Pause the game time
         pausePanel.SetActive(true);
     }
 
     public void ResumeButton() {
-        Time.timeScale = 1f;
+        Time.timeScale = 1f; // Resume the game time
         pausePanel.SetActive(false);
     }
 

@@ -36,7 +36,7 @@ public class PlatformGenerator : MonoBehaviour {
 
     public void GeneratePlatform(int numberOfPlatforms) {
         for (int i = 0; i < numberOfPlatforms; i++) {
-            // Calculate platform x and y coordinates
+            // Calculate platform's x and y coordinates
             float distX = Random.Range(topLeft.x + offset, -topLeft.x - offset);
             float distY = Random.Range(0.5f, 2.25f);
             //float distY = 0f;
@@ -44,22 +44,22 @@ public class PlatformGenerator : MonoBehaviour {
             // Create other platforms
             currentY += distY;
 
+            // Separate platforms that are too close
             while (Mathf.Abs(currentY - previousY) < 1.5f) {
                 currentY += 0.01f;
             }
 
-            Vector3 platformPos = new Vector3(distX, currentY, 0);
-            int randomPlatform = Random.Range(0, 9);
+            Vector3 platformPos = new Vector3(distX, currentY, 0); // Set the platform's position
+            int randomPlatform = Random.Range(0, 9); // Randomly choose the next platform type
             GameObject platform;
 
             // Blue platform (Moving)
             if (randomPlatform == 2 && gameController.GetScore() >= 2500) { // Required score to start spawning blue platforms
                 platform = Instantiate(bluePlatform, platformPos, Quaternion.identity);
-
             // White platform
-            } else if (randomPlatform == 3 && gameController.GetScore() >= 10000) {
+            } else if (randomPlatform == 3 && gameController.GetScore() >= 10000) { // Required score to start spawning white platforms
                 platform = Instantiate(whitePlatform, platformPos, Quaternion.identity);
-                // Green platform
+            // Green platform
             } else {
                 platform = Instantiate(greenPlatform, platformPos, Quaternion.identity);
             }
@@ -94,7 +94,7 @@ public class PlatformGenerator : MonoBehaviour {
                 brownPlatformGO.transform.SetParent(platformParent.transform, false);
             }
 
-            previousY = currentY;
+            previousY = currentY; // Save the previous Y to base the next platform's Y off of
 
             //Debug.Log("Spawning a platform");
         }

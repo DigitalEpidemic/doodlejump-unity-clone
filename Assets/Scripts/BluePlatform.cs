@@ -11,7 +11,7 @@ public class BluePlatform : MonoBehaviour {
 	void FixedUpdate () {
 		Vector3 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
 
-        // Moving right
+        // Move the platform to the right
         if (movingRight) {
             if (transform.position.x < -topLeft.x - offset) {
                 transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
@@ -19,7 +19,7 @@ public class BluePlatform : MonoBehaviour {
                 movingRight = false;
             }
 
-        // Moving left
+        // Move the platform to the left
         } else {
             if (transform.position.x > topLeft.x + offset) {
                 transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);

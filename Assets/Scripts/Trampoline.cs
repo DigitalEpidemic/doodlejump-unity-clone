@@ -10,12 +10,11 @@ public class Trampoline : MonoBehaviour {
         doodler = GameObject.FindGameObjectWithTag("Player");
         doodlerAnim = doodler.GetComponent<Animator>();
     }
-
-
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.relativeVelocity.y <= 0f && doodler.transform.localScale.x < 0) {
+    
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.relativeVelocity.y <= 0f && doodler.transform.localScale.x < 0) { // If the player is looking left
             doodlerAnim.SetTrigger("FlipLeft");
-        } else if (collision.relativeVelocity.y <= 0f && doodler.transform.localScale.x > 0) {
+        } else if (collision.relativeVelocity.y <= 0f && doodler.transform.localScale.x > 0) { // If the player is looking right
             doodlerAnim.SetTrigger("FlipRight");
         }
     }

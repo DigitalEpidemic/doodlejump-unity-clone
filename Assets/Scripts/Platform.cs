@@ -18,7 +18,6 @@ public class Platform : MonoBehaviour {
 
         // Set distance to destroy the platforms out of screen
         destroyDistance = gameController.GetComponent<GameController>().GetDestroyDistance();
-        //DestroyOverlap();
     }
 
     void DestroyOverlap() {
@@ -44,25 +43,6 @@ public class Platform : MonoBehaviour {
                 }
             }
         }
-
-        //if (gameObject.name == "BrownPlatform(Clone)" && colliders.Length > 1
-        //    && (colliders[0].name != "Doodler" && colliders[1].name != "Doodler")
-        //    && (colliders[0].name != "Spring(Clone)" || colliders[1].name != "Spring(Clone)")
-        //    && (colliders[0].name != "BluePlatform(Clone)" || colliders[1].name != "BluePlatform(Clone)")
-        //    && (colliders[0].name != "BrownPlatform(Clone)" || colliders[1].name != "BrownPlatform(Clone)")) {
-
-        //    print("destroying brown platform: " + transform.position);
-        //    Destroy(gameObject);
-        //}
-
-        //if (gameObject.name == "BluePlatform(Clone)") {
-        //    foreach (Collider2D col in colliders) {
-        //        if (col.name == "BrownPlatform(Clone)" && transform.position.y > Camera.main.transform.position.y + 12f) {
-        //            print("Destroying brown platform from loop");
-        //            Destroy(col.gameObject);
-        //        }
-        //    }
-        //}
     }
 
     void DebugDrawBox(Vector2 point, Vector2 size, float angle, Color color) {
@@ -146,14 +126,12 @@ public class Platform : MonoBehaviour {
                 // Play jump sound
                 //GetComponent<AudioSource>().Play();
 
-                // If current gameObject has animation (Spring, trampoline, etc.)
+                // If current gameObject has an animation (Spring, trampoline, etc.)
                 if  (gameObject.GetComponent<Animator>() != null) { // (gameObject.name != "BrownPlatform(Clone)" &&
                     boxX = 0f;
                     boxY = 0f;
                     GetComponent<Animator>().SetTrigger("Active");
                 }
-
-                // Check platform type
 
             }
         }
