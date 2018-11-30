@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
     [SerializeField] Text scoreText;
+    [SerializeField] Text gameOverScoreText;
     [SerializeField] Animator platformsAnim;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject pausePanel;
@@ -62,6 +63,7 @@ public class GameController : MonoBehaviour {
 
     void EndGame() {
         //Debug.Log("Game is over");
+        gameOverScoreText.text = score.ToString();
 
         // Animate platforms
         platformsAnim.SetTrigger("GameOver");
