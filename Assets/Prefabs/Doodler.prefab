@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4062134954940552}
   - component: {fileID: 212437578033983174}
+  - component: {fileID: 95056212356689564}
   - component: {fileID: 50981255455948206}
   - component: {fileID: 61874665125066176}
   - component: {fileID: 114732339195016072}
-  - component: {fileID: 95056212356689564}
   m_Layer: 0
   m_Name: Doodler
   m_TagString: Player

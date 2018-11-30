@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour {
     [SerializeField] Text scoreText;
     [SerializeField] Animator platformsAnim;
     [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] Button pauseButton;
 
     int score;
     float maxHeight;
@@ -66,10 +68,23 @@ public class GameController : MonoBehaviour {
 
         // Animate/Enable GameOver panel
         gameOverPanel.SetActive(true);
+
+        // Disable pause button
+        pauseButton.interactable = false;
     }
 
     public void PlayAgainButton() {
         SceneManager.LoadScene("Game");
+    }
+
+    public void PauseButton() {
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
+    }
+
+    public void ResumeButton() {
+        Time.timeScale = 1f;
+        pausePanel.SetActive(false);
     }
 
 }

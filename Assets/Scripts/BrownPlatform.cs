@@ -11,7 +11,7 @@ public class BrownPlatform : MonoBehaviour {
         
 
         if (fallDown) {
-            transform.position -= new Vector3(0, 8.5f*Time.deltaTime, 0);
+            transform.position -= new Vector3(0, 8f*Time.deltaTime, 0);
         }
     }
 

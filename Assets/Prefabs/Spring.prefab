@@ -59,8 +59,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.15768825, y: 0.2177756}
-  - {x: 0.15358685, y: 0.21777555}
+  - {x: -0.17163447, y: 0.1173772}
+  - {x: 0.16075918, y: 0.117377155}
 --- !u!95 &95969066658849010
 Animator:
   serializedVersion: 3
@@ -154,7 +154,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 1
-  m_SurfaceArc: 180
+  m_SurfaceArc: 170
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1

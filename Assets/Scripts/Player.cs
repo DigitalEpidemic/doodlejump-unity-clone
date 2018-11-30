@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb;
     Vector3 playerLocalScale;
 
-    public bool enableControls = false;
+    [HideInInspector] public bool enableControls = false;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
