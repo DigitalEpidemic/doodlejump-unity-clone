@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour {
 
-    [SerializeField] float jumpForce = 20f;
+    [SerializeField] float jumpForce = 16.5f;
     [SerializeField] Collider2D[] colliders;
     [SerializeField] float boxX = 2f, boxY = 1f;
 

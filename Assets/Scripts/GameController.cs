@@ -89,4 +89,8 @@ public class GameController : MonoBehaviour {
         pausePanel.SetActive(false);
     }
 
+    public void MenuButton() {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }

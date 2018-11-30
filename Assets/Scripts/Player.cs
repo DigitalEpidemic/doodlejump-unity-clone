@@ -20,8 +20,8 @@ public class Player : MonoBehaviour {
 
     void Update() {
         if (enableControls) {
-            //movement = Mathf.RoundToInt(Input.acceleration.x * movementSpeed);
-            movement = Input.GetAxis("Horizontal") * movementSpeed;
+            movement = Mathf.RoundToInt(Input.acceleration.x * movementSpeed);
+            //movement = Input.GetAxis("Horizontal") * movementSpeed;
 
             if (movement >= 1) {
                 transform.localScale = new Vector3(playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
