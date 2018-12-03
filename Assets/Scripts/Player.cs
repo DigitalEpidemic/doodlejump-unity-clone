@@ -27,15 +27,16 @@ public class Player : MonoBehaviour {
 
     void Update() {
         if (enableControls) {
-            movement = Mathf.RoundToInt(Input.acceleration.x * movementSpeed);
+            //movement = Mathf.RoundToInt(Input.acceleration.x * movementSpeed);
+            movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime*8.5f);
             //movement = Input.GetAxis("Horizontal") * movementSpeed;
 
-            if (movement >= 1) {
+            if (movement >=0.5f) {
                 doodler.flipX = true;
                 //transform.localScale = new Vector3(playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
                 isFlipped = false;
 
-            } else if (movement <= -1) {
+            } else if (movement <= -0.5f) {
                 doodler.flipX = false;
                 //transform.localScale = new Vector3(-playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
                 isFlipped = true;

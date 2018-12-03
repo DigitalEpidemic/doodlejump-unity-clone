@@ -81,7 +81,7 @@ public class PlatformGenerator : MonoBehaviour {
                     randomObject.transform.parent = platform.transform; // Make the object a child of the platform
 
 
-                } else if (randomObjProb == 17) { // Create propeller
+                } else if (randomObjProb == 17 && gameController.GetScore() >= 3500) { // Create propeller
                     //print("creating propeller");
                     Vector3 propellerPos = new Vector3(platformPos.x + 0.13f, platformPos.y + 0.16f, 0);
                     randomObject = Instantiate(propeller, propellerPos, Quaternion.identity);
