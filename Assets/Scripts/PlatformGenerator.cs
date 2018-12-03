@@ -13,6 +13,7 @@ public class PlatformGenerator : MonoBehaviour {
 
     [SerializeField] GameObject spring;
     [SerializeField] GameObject trampoline;
+    [SerializeField] GameObject propeller;
 
     GameObject randomObject;
 
@@ -66,7 +67,7 @@ public class PlatformGenerator : MonoBehaviour {
 
             platform.transform.SetParent(platformParent.transform, false); // Set parent of platform to empty GameObject for organization
 
-            if (randomPlatform != 4) { // 4 Being white platforms
+            if (randomPlatform != 3) { // 3 Being white platforms
                 int randomObjProb = Random.Range(0, 50);
 
                 if (randomObjProb == 7) { // Create spring
@@ -78,6 +79,14 @@ public class PlatformGenerator : MonoBehaviour {
                     Vector3 trampolinePos = new Vector3(platformPos.x + 0.13f, platformPos.y + 0.18f, 0);
                     randomObject = Instantiate(trampoline, trampolinePos, Quaternion.identity);
                     randomObject.transform.parent = platform.transform; // Make the object a child of the platform
+
+
+                } else if (randomObjProb == 17) { // Create propeller
+                    //print("creating propeller");
+                    Vector3 propellerPos = new Vector3(platformPos.x + 0.13f, platformPos.y + 0.16f, 0);
+                    randomObject = Instantiate(propeller, propellerPos, Quaternion.identity);
+                    randomObject.transform.SetParent(platform.transform);
+                        
                 }
 
             }

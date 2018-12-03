@@ -779,7 +779,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4551480100897728, guid: d4de1619045341d4bb75df3782a178cb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4551480100897728, guid: d4de1619045341d4bb75df3782a178cb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1865,7 +1865,7 @@ RectTransform:
   - {fileID: 1752036270}
   - {fileID: 1359807506}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2087,7 +2087,7 @@ RectTransform:
   - {fileID: 734641495}
   - {fileID: 173380193}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2355,6 +2355,7 @@ MonoBehaviour:
     type: 2}
   spring: {fileID: 1851530313961004, guid: f16c44b6a298ba94586086f62d3160ba, type: 2}
   trampoline: {fileID: 1665947251355514, guid: c828beb4e97f4784187169a728a19f99, type: 2}
+  propeller: {fileID: 1714015421548610, guid: 9512a4151c3256d4c9ea583a34cb43b3, type: 2}
   currentY: -7.5
 --- !u!4 &1853671257
 Transform:
@@ -2473,7 +2474,7 @@ RectTransform:
   m_Children:
   - {fileID: 1027090017}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2612,7 +2613,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4062134954940552, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.164
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4062134954940552, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2640,7 +2641,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4062134954940552, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 61874665125066176, guid: bea854d6c54a1c94682c8336bd13cf6f,
         type: 2}
@@ -2651,6 +2652,11 @@ Prefab:
         type: 2}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 212437578033983174, guid: bea854d6c54a1c94682c8336bd13cf6f,
+        type: 2}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea854d6c54a1c94682c8336bd13cf6f, type: 2}

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Trampoline : MonoBehaviour {
-    GameObject doodler;
+    Player doodler;
     Animator doodlerAnim;
 
     void Start() {
-        doodler = GameObject.FindGameObjectWithTag("Player");
+        doodler = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         doodlerAnim = doodler.GetComponent<Animator>();
     }
-    
+
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.relativeVelocity.y <= 0f && doodler.transform.localScale.x < 0) { // If the player is looking left
+        if (collision.relativeVelocity.y <= 0f && doodler.GetIsFlipped() == true) { // If the Doodler is looking left
             doodlerAnim.SetTrigger("FlipLeft");
-        } else if (collision.relativeVelocity.y <= 0f && doodler.transform.localScale.x > 0) { // If the player is looking right
+        } else if (collision.relativeVelocity.y <= 0f && doodler.GetIsFlipped() == false) { // If the Doodler is looking right
             doodlerAnim.SetTrigger("FlipRight");
         }
     }
