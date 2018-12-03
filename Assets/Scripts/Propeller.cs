@@ -60,6 +60,7 @@ public class Propeller : MonoBehaviour {
             if (collision.transform.childCount == 0) {
                 transform.parent = collision.transform;
                 transform.localPosition = new Vector3(0, -0.2f, 0);
+                transform.localRotation = new Quaternion(0, 0, 0, 0);
                 GetComponent<BoxCollider2D>().enabled = false;
 
                 doodlerRB = collision.GetComponent<Rigidbody2D>();
