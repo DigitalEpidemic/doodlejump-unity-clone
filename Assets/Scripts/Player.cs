@@ -28,7 +28,7 @@ public class Player : MonoBehaviour {
     void Update() {
         if (enableControls) {
             //movement = Mathf.RoundToInt(Input.acceleration.x * movementSpeed);
-            movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime*8.5f);
+            movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime*8f);
             //movement = Input.GetAxis("Horizontal") * movementSpeed;
 
             if (movement >=0.5f) {
