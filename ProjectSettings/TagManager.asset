@@ -9,6 +9,7 @@ TagManager:
   - LeftWall
   - Killer
   - RandomObject
+  - Monster
   layers:
   - Default
   - TransparentFX
