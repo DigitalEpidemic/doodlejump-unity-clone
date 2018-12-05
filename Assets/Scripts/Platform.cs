@@ -26,19 +26,10 @@ public class Platform : MonoBehaviour {
 
         //DebugDrawBox(transform.position, new Vector2(boxX, boxY), 0, Color.red);
 
-        if (gameObject.name == "Spring(Clone)" && colliders.Length >= 2 && transform.position.y >= Camera.main.transform.position.y + 12f) {
+        if (gameObject.CompareTag("RandomObject") && colliders.Length >= 2 && transform.position.y >= Camera.main.transform.position.y + 12f) {
             foreach (Collider2D col in colliders) {
                 if (col.name == "BrownPlatform(Clone)") {
-                    //print("Destroying brown platform because of spring");
-                    Destroy(col.gameObject);
-                }
-            }
-        }
-
-        if (gameObject.name == "Trampoline(Clone)" && colliders.Length >= 2 && transform.position.y >= Camera.main.transform.position.y + 12f) {
-            foreach (Collider2D col in colliders) {
-                if (col.name == "BrownPlatform(Clone)") {
-                    //print("Destroying brown platform because of trampoline");
+                    //print("Destroying brown platform because of: " + gameObject);
                     Destroy(col.gameObject);
                 }
             }
