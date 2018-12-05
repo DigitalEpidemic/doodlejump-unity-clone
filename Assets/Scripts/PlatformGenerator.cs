@@ -88,12 +88,12 @@ public class PlatformGenerator : MonoBehaviour {
                     Vector3 propellerPos = new Vector3(platformPos.x + 0.13f, platformPos.y + 0.16f, 0);
                     randomObject = Instantiate(propeller, propellerPos, Quaternion.identity);
                     randomObject.transform.SetParent(platform.transform);
-                        
-                } else if (randomObjProb == 19 && gameController.GetScore() >= 5000) {
+
+                } else if (randomObjProb == 19 && gameController.GetScore() >= 5000) { // Create Monster
                     Vector3 monsterPos = new Vector3(platformPos.x, platformPos.y, 0);
                     randomObject = Instantiate(monster, monsterPos, Quaternion.identity);
                     randomObject.transform.SetParent(platform.transform);
-                    currentY += 1.25f;
+                    currentY += 1.25f; // Keep next platform 1.25f away to have distance from the monster
                 }
 
             }
@@ -109,15 +109,6 @@ public class PlatformGenerator : MonoBehaviour {
                 GameObject brownPlatformGO = Instantiate(brownPlatform, brownPlatformPos, Quaternion.identity);
                 brownPlatformGO.transform.SetParent(platformParent.transform, false);
             }
-
-            //int randomMonster = Random.Range(0, 9);
-            //if (randomMonster == 5) {
-            //    float monsterDistX = Random.Range(topLeft.x + offset, -topLeft.x - offset);
-            //    //float randomOffset = Random.Range(-0.3f, 0.3f);
-            //    float monsterDistY = currentY - Mathf.Abs((currentY - previousY) / 2);
-            //    Vector3 monsterPos = new Vector3(monsterDistX, monsterDistY, 0);
-            //    GameObject monsterGO = Instantiate(monster, monsterPos, Quaternion.identity);
-            //}
 
             previousY = currentY; // Save the previous Y to base the next platform's Y off of
 
