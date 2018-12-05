@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
     [SerializeField] float movementSpeed = 10f;
+    [SerializeField] GameObject spinningStars;
 
     [HideInInspector] public bool enableControls = false;
 
@@ -25,10 +26,17 @@ public class Player : MonoBehaviour {
         return isFlipped;
     }
 
+    public void ShowSpinningStars(bool decision) {
+        if (decision) {
+            spinningStars.SetActive(decision);
+            print("Setting stars to: " + decision);
+        }
+    }
+
     void Update() {
         if (enableControls) {
-            movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f);
-            //movement = Input.GetAxis("Horizontal") * movementSpeed;
+            //movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f);
+            movement = Input.GetAxis("Horizontal") * movementSpeed;
 
             if (movement >=0.5f) {
                 doodler.flipX = true;
@@ -44,9 +52,11 @@ public class Player : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        Vector2 velocity = rb.velocity;
-        velocity.x = movement;
-        rb.velocity = velocity;
+        if (enableControls) {
+            Vector2 velocity = rb.velocity;
+            velocity.x = movement;
+            rb.velocity = velocity;
+        }
 
         // Doodler wall to wall teleport
         Vector3 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));

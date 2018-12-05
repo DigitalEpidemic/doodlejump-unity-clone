@@ -7,7 +7,7 @@ public class Monster : MonoBehaviour {
     [SerializeField] float jumpForce = 16.5f;
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.relativeVelocity.y <= 0f) {
+        if (collision.relativeVelocity.y <= 0.7f) {
             Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
 
             if (rb != null) {
@@ -26,16 +26,25 @@ public class Monster : MonoBehaviour {
                 //GetComponent<AudioSource>().Play();
 
                 Destroy(gameObject);
-
             }
-
-        } else {
-            Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
-
-            rb.isKinematic = true;
-            Vector2 velocity = rb.velocity;
-            velocity.y = -9.81f;
-            rb.velocity = velocity;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            Rigidbody2D doodlerRB = collision.GetComponent<Rigidbody2D>();
+            doodlerRB.isKinematic = true;
+            Player doodler = collision.GetComponent<Player>();
+            doodler.ShowSpinningStars(true);
+            doodler.enableControls = false;
+
+
+            Vector2 velocity = doodlerRB.velocity;
+            velocity.y = -9.81f;
+            velocity.x = 0f;
+            doodlerRB.velocity = velocity;
+
+        }
+    }
+
 }
