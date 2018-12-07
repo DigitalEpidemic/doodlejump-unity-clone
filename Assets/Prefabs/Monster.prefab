@@ -72,7 +72,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -184,7 +184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 16.5
-  monsterShot: {fileID: 8300000, guid: 5393745333a5a4e48bccadc2cbb4ec67, type: 3}
   monsterJumpedOn: {fileID: 8300000, guid: 7d392958a86fa8b4a84998f7767270f6, type: 3}
   monsterCrashedInto: {fileID: 8300000, guid: afc4af5b49d31a3419a699910ba76a3d, type: 3}
 --- !u!212 &212368291705639530

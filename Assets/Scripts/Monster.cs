@@ -40,8 +40,8 @@ public class Monster : MonoBehaviour {
                 rb.velocity = velocity;
 
                 // Play jump sound
-                audioSource.clip = monsterJumpedOn;
-                audioSource.Play();
+                audioSource.Stop(); // Stop loop
+                audioSource.PlayOneShot(monsterJumpedOn);
 
                 Destroy(gameObject);
             }
@@ -58,8 +58,8 @@ public class Monster : MonoBehaviour {
             doodler.ShowSpinningStars(true);
             doodler.enableControls = false;
 
-            audioSource.clip = monsterCrashedInto;
-            audioSource.Play();
+            audioSource.Stop(); // Stop loop
+            audioSource.PlayOneShot(monsterCrashedInto);
 
             // Make Doodler fall off the screen
             Vector2 velocity = doodlerRB.velocity;

@@ -73,6 +73,9 @@ public class GameController : MonoBehaviour {
         //Debug.Log("Game is over");
         gameOverScoreText.text = score.ToString();
 
+        // Disable player shooting
+        player.GetComponent<Player>().canShoot = false;
+
         // Play falling sound
         audioSource.Play();
 
