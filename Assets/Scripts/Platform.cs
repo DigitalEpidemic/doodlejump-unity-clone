@@ -104,6 +104,7 @@ public class Platform : MonoBehaviour {
                     Animator doodlerAnim = doodler.GetComponent<Animator>();
 
                     doodler.enableControls = true;
+                    doodler.canShoot = true;
                     if (gameObject.name != "BrownPlatform(Clone)") {
                         doodlerAnim.SetTrigger("Jump");
                     }

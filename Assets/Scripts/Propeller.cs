@@ -25,6 +25,7 @@ public class Propeller : MonoBehaviour {
     void FixedUpdate() {
         if (startTimer) {
             doodlerRB.isKinematic = true;
+            doodler.canShoot = false;
 
             Vector2 velocity = doodlerRB.velocity;
             velocity.y = 16.5f;
@@ -41,7 +42,6 @@ public class Propeller : MonoBehaviour {
         if (fallOff && doodlerRB) {
             animationTimer += Time.deltaTime;
             doodlerRB.isKinematic = false;
-
             // Play propeller animation based on if Doodler sprite is flipped
             if (doodler.GetIsFlipped() == false) {
                 GetComponent<Animator>().SetTrigger("FallRight");
@@ -57,7 +57,7 @@ public class Propeller : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            if (collision.transform.childCount == 0) {
+            if (collision.transform.childCount == 2) { // Stars and Nose are always children of Doodler
                 transform.parent = collision.transform;
                 transform.localPosition = new Vector3(0, -0.2f, 0);
                 transform.localRotation = new Quaternion(0, 0, 0, 0);
