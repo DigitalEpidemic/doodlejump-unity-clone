@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO Cleanup code
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
     [SerializeField] float movementSpeed = 10f;
     [SerializeField] GameObject spinningStars;
-    
+
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject projectile;
-    [SerializeField] float projectileSpeed = 12.5f;
     [SerializeField] GameObject nose;
 
     [SerializeField] RuntimeAnimatorController normalController;
@@ -24,13 +24,11 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb;
     SpriteRenderer doodler;
     Animator anim;
-    //Vector3 playerLocalScale;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         doodler = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        //playerLocalScale = transform.localScale;
     }
 
     public bool GetIsFlipped() {
@@ -49,14 +47,11 @@ public class Player : MonoBehaviour {
             movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f);
             //movement = Input.GetAxis("Horizontal") * movementSpeed;
 
-            if (movement >=0.5f) {
+            if (movement >= 0.5f) {
                 doodler.flipX = true;
-                //transform.localScale = new Vector3(playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
                 isFlipped = false;
-
             } else if (movement <= -0.5f) {
                 doodler.flipX = false;
-                //transform.localScale = new Vector3(-playerLocalScale.x, playerLocalScale.y, playerLocalScale.z);
                 isFlipped = true;
             }
 
@@ -67,7 +62,6 @@ public class Player : MonoBehaviour {
                         StartCoroutine(RotateAndShoot());
                     }
                 }
-
             }
 
         }
@@ -82,8 +76,7 @@ public class Player : MonoBehaviour {
 
         // Doodler wall to wall teleport
         Vector3 topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        float offset = 0.5f;
-
+        float offset = 0.45f;
         if (transform.position.x > -topLeft.x + offset) {
             transform.position = new Vector3(topLeft.x - offset, transform.position.y, transform.position.z);
         } else if (transform.position.x < topLeft.x - offset) {
@@ -92,23 +85,22 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator RotateAndShoot() {
-        nose.SetActive(true);
-        anim.runtimeAnimatorController = shootingController;
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position) - Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2));
+        nose.SetActive(true); // Show doodler nose gameobject
+        anim.runtimeAnimatorController = shootingController; // Switch to shooting animator controller
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position) - Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2)); // Calculate difference between middle of screen and touch position
         difference.Normalize();
 
-        float rotZ = Mathf.Abs(Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg);
-        float clampedRotZ = Mathf.Clamp(rotZ - 90, -25, 25);
-        nose.transform.rotation = Quaternion.Euler(0f, 0f, clampedRotZ);
+        float rotZ = Mathf.Abs(Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg); // Convert difference to positive rotation in degrees
+        float clampedRotZ = Mathf.Clamp(rotZ - 90, -25, 25); // Clamp rotation from -25 degrees to +25 degrees
+        nose.transform.rotation = Quaternion.Euler(0f, 0f, clampedRotZ); // Set nose rotation
 
-        Vector2 touchPosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position).x, Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position).y);
-        Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
-        GameObject bullet = Instantiate(projectile, firePoint.position, Quaternion.Euler(0f, 0f, clampedRotZ));
+        // TODO Optimize with object pooling
+        Instantiate(projectile, firePoint.position, Quaternion.Euler(0f, 0f, clampedRotZ)); // Instantiate projectile at firePoint position attached to Doodler
 
         yield return new WaitForSeconds(1f);
 
-        nose.SetActive(false);
-        //doodler.sprite = normalSprite;
-        anim.runtimeAnimatorController = normalController;
+        nose.SetActive(false); // Hide doodler nose gameobject
+        anim.runtimeAnimatorController = normalController; // Switch back to original animator controller
     }
+
 }

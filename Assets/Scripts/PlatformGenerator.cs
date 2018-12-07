@@ -37,6 +37,7 @@ public class PlatformGenerator : MonoBehaviour {
         GeneratePlatform(40);
     }
 
+    // TODO Optimize with object pooling
     public void GeneratePlatform(int numberOfPlatforms) {
         for (int i = 0; i < numberOfPlatforms; i++) {
             // Calculate platform's x and y coordinates
