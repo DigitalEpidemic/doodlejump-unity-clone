@@ -15,6 +15,11 @@ public class Player : MonoBehaviour {
     [SerializeField] RuntimeAnimatorController normalController;
     [SerializeField] RuntimeAnimatorController shootingController;
 
+    AudioSource audioSource;
+    [SerializeField] AudioClip shootSound1;
+    [SerializeField] AudioClip shootSound2;
+    [SerializeField] AudioClip monsterShot;
+
     [HideInInspector] public bool enableControls = false;
 
     float movement = 0f;
@@ -29,10 +34,20 @@ public class Player : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         doodler = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public bool GetIsFlipped() {
         return isFlipped;
+    }
+
+    public void ResetDoodlerAnimController() {
+        nose.SetActive(false);
+        anim.runtimeAnimatorController = normalController;
+    }
+
+    public void EnableDoodlerShooting() {
+        canShoot = true;
     }
 
     public void ShowSpinningStars(bool decision) {
@@ -96,11 +111,27 @@ public class Player : MonoBehaviour {
 
         // TODO Optimize with object pooling
         Instantiate(projectile, firePoint.position, Quaternion.Euler(0f, 0f, clampedRotZ)); // Instantiate projectile at firePoint position attached to Doodler
+        ChooseShootSound();
 
         yield return new WaitForSeconds(1f);
 
         nose.SetActive(false); // Hide doodler nose gameobject
         anim.runtimeAnimatorController = normalController; // Switch back to original animator controller
+    }
+
+    void ChooseShootSound() {
+        int randomNumber = Random.Range(0, 49);
+
+        if (randomNumber % 2 == 0) {
+            audioSource.PlayOneShot(shootSound1);
+        } else {
+            audioSource.PlayOneShot(shootSound2);
+        }
+        
+    }
+
+    public void PlayMonsterShotSound() {
+        audioSource.PlayOneShot(monsterShot);
     }
 
 }

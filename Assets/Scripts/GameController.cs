@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour {
     [SerializeField] GameObject pausePanel;
     [SerializeField] Button pauseButton;
 
+    AudioSource audioSource;
+
     int score;
     float maxHeight;
     bool gameOver = false;
@@ -25,6 +27,8 @@ public class GameController : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
 
         Vector3 cameraPos = Camera.main.transform.position;
+
+        audioSource = GetComponent<AudioSource>();
 
         // Disable unnecessary warning about topLeft not being used
 #pragma warning disable 0219
@@ -61,9 +65,16 @@ public class GameController : MonoBehaviour {
         return score;
     }
 
+    public bool GetGameOver() {
+        return gameOver;
+    }
+
     void EndGame() {
         //Debug.Log("Game is over");
         gameOverScoreText.text = score.ToString();
+
+        // Play falling sound
+        audioSource.Play();
 
         // Animate platforms
         platformsAnim.SetTrigger("GameOver");

@@ -81,12 +81,14 @@ public class Platform : MonoBehaviour {
                 }
 
                 // Destroy this platform if sound has finished
-                //if (!GetComponent<AudioSource>().isPlaying && !transform.GetChild(0).GetComponent<AudioSource>().isPlaying)
-                Destroy(gameObject);
+                if (!GetComponent<AudioSource>().isPlaying && !transform.GetChild(0).GetComponent<AudioSource>().isPlaying) {
+                    Destroy(gameObject);
+                }
             } else {
                 // Destroy this platform if sound has finished
-                //if (!GetComponent<AudioSource>().isPlaying)
-                Destroy(gameObject);
+                if (!GetComponent<AudioSource>().isPlaying) {
+                    Destroy(gameObject);
+                }
             }
         }
     }
@@ -115,8 +117,8 @@ public class Platform : MonoBehaviour {
                 velocity.y = jumpForce;
                 rb.velocity = velocity;
 
-                // Play jump sound
-                //GetComponent<AudioSource>().Play();
+                // Play sound
+                GetComponent<AudioSource>().Play();
 
                 // If current gameObject has an animation (Spring, trampoline, etc.)
                 if  (gameObject.GetComponent<Animator>() != null) { // (gameObject.name != "BrownPlatform(Clone)" &&

@@ -70,6 +70,7 @@ public class Propeller : MonoBehaviour {
                     doodlerRB.isKinematic = true;
 
                     // Play sound
+                    GetComponent<AudioSource>().Play();
 
                     // Play animation
                     GetComponent<Animator>().SetTrigger("Active");
@@ -85,6 +86,7 @@ public class Propeller : MonoBehaviour {
     public void UnparentPropeller() {
         //Debug.Log("Unparenting");
         transform.parent = null;
+        doodler.canShoot = true;
     }
 
 }

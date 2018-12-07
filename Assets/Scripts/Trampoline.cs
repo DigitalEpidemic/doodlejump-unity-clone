@@ -14,9 +14,11 @@ public class Trampoline : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.relativeVelocity.y <= 0f && doodler.GetIsFlipped() == true) { // If the Doodler is looking left
             doodler.canShoot = false;
+            doodler.ResetDoodlerAnimController();
             doodlerAnim.SetTrigger("FlipLeft");
         } else if (collision.relativeVelocity.y <= 0f && doodler.GetIsFlipped() == false) { // If the Doodler is looking right
             doodler.canShoot = false;
+            doodler.ResetDoodlerAnimController();
             doodlerAnim.SetTrigger("FlipRight");
         }
     }

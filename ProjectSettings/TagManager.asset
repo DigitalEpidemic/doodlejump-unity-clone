@@ -10,6 +10,7 @@ TagManager:
   - Killer
   - RandomObject
   - Monster
+  - Projectile
   layers:
   - Default
   - TransparentFX
