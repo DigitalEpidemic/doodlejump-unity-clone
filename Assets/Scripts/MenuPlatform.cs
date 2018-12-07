@@ -25,7 +25,7 @@ public class MenuPlatform : MonoBehaviour {
                 rb.velocity = velocity;
 
                 // Play jump sound
-                //GetComponent<AudioSource>().Play();
+                GetComponent<AudioSource>().Play();
 
             }
         }
