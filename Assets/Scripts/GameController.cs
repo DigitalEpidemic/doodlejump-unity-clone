@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] Text scoreText;
     [SerializeField] Text gameOverScoreText;
     [SerializeField] Text gameOverHighScoreText;
+    [SerializeField] InputField highScoreName;
     [SerializeField] Animator platformsAnim;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject pausePanel;
@@ -72,6 +73,8 @@ public class GameController : MonoBehaviour {
 
     void EndGame() {
         //Debug.Log("Game is over");
+        highScoreName.text = PlayerPrefs.GetString("Name", "doodler");
+
         gameOverScoreText.text = score.ToString();
 
         if (score > PlayerPrefs.GetInt("Highscore", 0)) {
@@ -97,6 +100,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void PlayAgainButton() {
+        PlayerPrefs.SetString("Name", highScoreName.text);
         SceneManager.LoadScene("Game");
     }
 
@@ -111,6 +115,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void MenuButton() {
+        PlayerPrefs.SetString("Name", highScoreName.text);
         SceneManager.LoadScene("MainMenu");
     }
 
