@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
     float movement = 0f;
     bool isFlipped = false;
     public bool canShoot = true;
+    public bool usingPropeller = false;
 
     Rigidbody2D rb;
     SpriteRenderer doodler;
@@ -59,8 +60,8 @@ public class Player : MonoBehaviour {
 
     void Update() {
         if (enableControls) {
-            movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f);
-            //movement = Input.GetAxis("Horizontal") * movementSpeed;
+            //movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f);
+            movement = Input.GetAxis("Horizontal") * movementSpeed;
 
             if (movement >= 0.5f) {
                 doodler.flipX = true;

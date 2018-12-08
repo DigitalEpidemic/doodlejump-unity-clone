@@ -26,6 +26,7 @@ public class Propeller : MonoBehaviour {
         if (startTimer) {
             doodlerRB.isKinematic = true;
             doodler.canShoot = false;
+            doodler.usingPropeller = true;
 
             Vector2 velocity = doodlerRB.velocity;
             velocity.y = 16.5f;

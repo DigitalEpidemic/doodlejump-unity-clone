@@ -49,7 +49,7 @@ public class Monster : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Player")) {
+        if (collision.CompareTag("Player") && !collision.gameObject.GetComponent<Player>().usingPropeller) {
             Rigidbody2D doodlerRB = collision.GetComponent<Rigidbody2D>();
             doodlerRB.isKinematic = true; // Remove gravity from Doodler
             Player doodler = collision.GetComponent<Player>();
@@ -66,7 +66,9 @@ public class Monster : MonoBehaviour {
             velocity.y = -9.81f; // Apply gravity constant to kinematic Rigidbody
             doodlerRB.velocity = velocity;
 
-        } else if (collision.CompareTag("Projectile")) {
+        } else if (collision.CompareTag("Projectile") || (collision.CompareTag("Player") && collision.gameObject.GetComponent<Player>().usingPropeller)) {
+            Player doodler = collision.GetComponent<Player>();
+            doodler.PlayMonsterShotSound();
             Destroy(gameObject);
         }
     }
