@@ -88,6 +88,7 @@ public class Propeller : MonoBehaviour {
         //Debug.Log("Unparenting");
         transform.parent = null;
         doodler.canShoot = true;
+        doodler.usingPropeller = false;
     }
 
 }

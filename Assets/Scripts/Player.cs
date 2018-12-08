@@ -60,8 +60,8 @@ public class Player : MonoBehaviour {
 
     void Update() {
         if (enableControls) {
-            //movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f);
-            movement = Input.GetAxis("Horizontal") * movementSpeed;
+            movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f);
+            //movement = Input.GetAxis("Horizontal") * movementSpeed;
 
             if (movement >= 0.5f) {
                 doodler.flipX = true;
