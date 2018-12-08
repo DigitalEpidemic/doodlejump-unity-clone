@@ -67,7 +67,7 @@ public class Monster : MonoBehaviour {
             doodlerRB.velocity = velocity;
 
         } else if (collision.CompareTag("Projectile") || (collision.CompareTag("Player") && collision.gameObject.GetComponent<Player>().usingPropeller)) {
-            Player doodler = collision.GetComponent<Player>();
+            Player doodler = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             doodler.PlayMonsterShotSound();
             Destroy(gameObject);
         }
