@@ -2543,6 +2543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 289359948}
   gameOverScoreText: {fileID: 1050027273}
+  gameOverHighScoreText: {fileID: 828245441}
   platformsAnim: {fileID: 1895516989}
   gameOverPanel: {fileID: 173380192}
   pausePanel: {fileID: 1200994380}

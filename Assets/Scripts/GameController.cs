@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
     [SerializeField] Text scoreText;
     [SerializeField] Text gameOverScoreText;
+    [SerializeField] Text gameOverHighScoreText;
     [SerializeField] Animator platformsAnim;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject pausePanel;
@@ -72,6 +73,12 @@ public class GameController : MonoBehaviour {
     void EndGame() {
         //Debug.Log("Game is over");
         gameOverScoreText.text = score.ToString();
+
+        if (score > PlayerPrefs.GetInt("Highscore", 0)) {
+            PlayerPrefs.SetInt("Highscore", score);
+        }
+
+        gameOverHighScoreText.text = PlayerPrefs.GetInt("Highscore", 0).ToString();
 
         // Disable player shooting
         player.GetComponent<Player>().canShoot = false;
