@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuPlatform : MonoBehaviour {
 
     [SerializeField] float jumpForce = 16.5f;
+    [SerializeField] AudioClip jumpSound;
 
     void OnCollisionEnter2D(Collision2D collision) {
         // Add force when player falls from the top
@@ -25,7 +26,8 @@ public class MenuPlatform : MonoBehaviour {
                 rb.velocity = velocity;
 
                 // Play jump sound
-                GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().Play();
+                AudioManager.instance.PlaySoundEffect(jumpSound);
 
             }
         }

@@ -14,11 +14,10 @@ public class GameController : MonoBehaviour {
     [SerializeField] GameObject pausePanel;
     [SerializeField] Button pauseButton;
 
-    AudioSource audioSource;
-
     int score;
     float maxHeight;
     bool gameOver = false;
+    bool isPaused = false;
 
     GameObject player;
 
@@ -29,8 +28,6 @@ public class GameController : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
 
         Vector3 cameraPos = Camera.main.transform.position;
-
-        audioSource = GetComponent<AudioSource>();
 
         // Disable unnecessary warning about topLeft not being used
 #pragma warning disable 0219
@@ -71,6 +68,14 @@ public class GameController : MonoBehaviour {
         return gameOver;
     }
 
+    public bool GetIsPaused() {
+        return isPaused;
+    }
+
+    public RectTransform GetPauseRect() {
+        return pauseButton.GetComponent<RectTransform>();
+    }
+
     void EndGame() {
         //Debug.Log("Game is over");
         highScoreName.text = PlayerPrefs.GetString("Name", "doodler");
@@ -87,7 +92,8 @@ public class GameController : MonoBehaviour {
         player.GetComponent<Player>().canShoot = false;
 
         // Play falling sound
-        audioSource.Play();
+        AudioManager.instance.PlayGameOverSound();
+        //audioSource.Play();
 
         // Animate platforms
         platformsAnim.SetTrigger("GameOver");
@@ -105,12 +111,16 @@ public class GameController : MonoBehaviour {
     }
 
     public void PauseButton() {
+        isPaused = true;
         Time.timeScale = 0f; // Pause the game time
+        player.GetComponent<Player>().enableControls = false;
         pausePanel.SetActive(true);
     }
 
     public void ResumeButton() {
         Time.timeScale = 1f; // Resume the game time
+        isPaused = false;
+        player.GetComponent<Player>().enableControls = true;
         pausePanel.SetActive(false);
     }
 

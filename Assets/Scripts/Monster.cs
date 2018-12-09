@@ -7,19 +7,46 @@ public class Monster : MonoBehaviour {
     [SerializeField] float jumpForce = 16.5f;
     [SerializeField] AudioClip monsterJumpedOn;
     [SerializeField] AudioClip monsterCrashedInto;
+    [SerializeField] AudioClip monsterShot;
+    [SerializeField] AudioClip monsterInRange;
 
     AudioSource audioSource;
 
     GameController gameController;
 
-    void Start() {
+    void Awake() {
         audioSource = GetComponent<AudioSource>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
+    void PauseAudio() {
+        audioSource.Pause();
+    }
+
     void Update() {
+        if (transform.parent.position.y - Camera.main.transform.position.y <= 15f) {
+            PlayAudioLoop();
+        }
+
+        if (gameController.GetIsPaused() == true) {
+            print("Pausing");
+            if (audioSource.isPlaying) {
+                audioSource.Pause();
+            }
+        } else if (gameController.GetIsPaused() == false) {
+            if (!audioSource.isPlaying) {
+                audioSource.UnPause();
+            }
+        }
+
         if (gameController.GetGameOver() == true) {
             audioSource.Stop();
+        }
+    }
+
+    void PlayAudioLoop() {
+        if (!audioSource.isPlaying) {
+            audioSource.Play();
         }
     }
 
@@ -41,7 +68,8 @@ public class Monster : MonoBehaviour {
 
                 // Play jump sound
                 audioSource.Stop(); // Stop loop
-                audioSource.PlayOneShot(monsterJumpedOn);
+                AudioManager.instance.PlaySoundEffect(monsterJumpedOn);
+                // TODO Create audiosource class
 
                 Destroy(gameObject);
             }
@@ -59,7 +87,7 @@ public class Monster : MonoBehaviour {
             doodler.enableControls = false;
 
             audioSource.Stop(); // Stop loop
-            audioSource.PlayOneShot(monsterCrashedInto);
+            AudioManager.instance.PlaySoundEffect(monsterCrashedInto);
 
             // Make Doodler fall off the screen
             Vector2 velocity = doodlerRB.velocity;
@@ -67,8 +95,7 @@ public class Monster : MonoBehaviour {
             doodlerRB.velocity = velocity;
 
         } else if (collision.CompareTag("Projectile") || (collision.CompareTag("Player") && collision.gameObject.GetComponent<Player>().usingPropeller)) {
-            Player doodler = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            doodler.PlayMonsterShotSound();
+            AudioManager.instance.PlaySoundEffect(monsterShot);
             Destroy(gameObject);
         }
     }

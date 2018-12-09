@@ -15,7 +15,6 @@ public class Player : MonoBehaviour {
     [SerializeField] RuntimeAnimatorController normalController;
     [SerializeField] RuntimeAnimatorController shootingController;
 
-    AudioSource audioSource;
     [SerializeField] AudioClip shootSound1;
     [SerializeField] AudioClip shootSound2;
     [SerializeField] AudioClip monsterShot;
@@ -30,12 +29,13 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb;
     SpriteRenderer doodler;
     Animator anim;
+    GameController gameController;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         doodler = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     public bool GetIsFlipped() {
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour {
 
             if (Input.touchCount > 0) {
                 if (Input.GetTouch(0).phase == TouchPhase.Began) {
-                    if (canShoot) {
+                    if (!RectTransformUtility.RectangleContainsScreenPoint(gameController.GetPauseRect(), Input.GetTouch(0).position, Camera.main) && canShoot) {
                         StopAllCoroutines();
                         StartCoroutine(RotateAndShoot());
                     }
@@ -124,15 +124,11 @@ public class Player : MonoBehaviour {
         int randomNumber = Random.Range(0, 49);
 
         if (randomNumber % 2 == 0) {
-            audioSource.PlayOneShot(shootSound1);
+            AudioManager.instance.PlaySoundEffect(shootSound1);
         } else {
-            audioSource.PlayOneShot(shootSound2);
+            AudioManager.instance.PlaySoundEffect(shootSound2);
         }
         
-    }
-
-    public void PlayMonsterShotSound() {
-        audioSource.PlayOneShot(monsterShot);
     }
 
 }

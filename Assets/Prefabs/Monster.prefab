@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95085302279416734}
   - component: {fileID: 114619433649001442}
   - component: {fileID: 58429562465367854}
-  - component: {fileID: 82112186961751152}
+  - component: {fileID: 82069692178074410}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Monster
@@ -59,7 +59,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.55
---- !u!82 &82112186961751152
+--- !u!82 &82069692178074410
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,7 +69,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d744f93e44ce21349980bfc4095a0f85, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -186,6 +186,8 @@ MonoBehaviour:
   jumpForce: 16.5
   monsterJumpedOn: {fileID: 8300000, guid: 7d392958a86fa8b4a84998f7767270f6, type: 3}
   monsterCrashedInto: {fileID: 8300000, guid: afc4af5b49d31a3419a699910ba76a3d, type: 3}
+  monsterShot: {fileID: 8300000, guid: 5393745333a5a4e48bccadc2cbb4ec67, type: 3}
+  monsterInRange: {fileID: 8300000, guid: d744f93e44ce21349980bfc4095a0f85, type: 3}
 --- !u!212 &212368291705639530
 SpriteRenderer:
   m_ObjectHideFlags: 1

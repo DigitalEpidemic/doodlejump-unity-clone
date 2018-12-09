@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Propeller : MonoBehaviour {
 
+    [SerializeField] AudioClip propellerSound;
     [SerializeField] float flightLength = 2.5f;
 
     Player doodler;
@@ -71,7 +72,8 @@ public class Propeller : MonoBehaviour {
                     doodlerRB.isKinematic = true;
 
                     // Play sound
-                    GetComponent<AudioSource>().Play();
+                    //GetComponent<AudioSource>().Play();
+                    AudioManager.instance.PlaySoundEffect(propellerSound);
 
                     // Play animation
                     GetComponent<Animator>().SetTrigger("Active");

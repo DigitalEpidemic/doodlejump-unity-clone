@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour {
 
+    [SerializeField] AudioClip platformSound;
     [SerializeField] float jumpForce = 16.5f;
     [SerializeField] Collider2D[] colliders;
     [SerializeField] float boxX = 2f, boxY = 1f;
@@ -81,14 +82,14 @@ public class Platform : MonoBehaviour {
                 }
 
                 // Destroy this platform if sound has finished
-                if (!GetComponent<AudioSource>().isPlaying && !transform.GetChild(0).GetComponent<AudioSource>().isPlaying) {
+                //if (!GetComponent<AudioSource>().isPlaying && !transform.GetChild(0).GetComponent<AudioSource>().isPlaying) {
                     Destroy(gameObject);
-                }
+                //}
             } else {
                 // Destroy this platform if sound has finished
-                if (!GetComponent<AudioSource>().isPlaying) {
+                //if (!GetComponent<AudioSource>().isPlaying) {
                     Destroy(gameObject);
-                }
+                //}
             }
         }
     }
@@ -118,7 +119,8 @@ public class Platform : MonoBehaviour {
                 rb.velocity = velocity;
 
                 // Play sound
-                GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().Play();
+                AudioManager.instance.PlaySoundEffect(platformSound);
 
                 // If current gameObject has an animation (Spring, trampoline, etc.)
                 if  (gameObject.GetComponent<Animator>() != null) { // (gameObject.name != "BrownPlatform(Clone)" &&
