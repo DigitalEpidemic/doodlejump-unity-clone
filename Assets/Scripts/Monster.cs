@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Monster : MonoBehaviour {
-
     [SerializeField] float jumpForce = 16.5f;
     [SerializeField] AudioClip monsterJumpedOn;
     [SerializeField] AudioClip monsterCrashedInto;
@@ -11,25 +10,24 @@ public class Monster : MonoBehaviour {
     [SerializeField] AudioClip monsterInRange;
 
     AudioSource audioSource;
-
     GameController gameController;
 
     void Awake() {
         audioSource = GetComponent<AudioSource>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
-
-    void PauseAudio() {
-        audioSource.Pause();
+    
+    void Update() {
+        PauseResumeStopAudio();
     }
 
-    void Update() {
-        if (transform.parent.position.y - Camera.main.transform.position.y <= 15f) {
+    void PauseResumeStopAudio() {
+        if (transform.parent.position.y - Camera.main.transform.position.y <= 15f) { // If monster is within range
             PlayAudioLoop();
         }
 
+        // Pause/Unpause the looping audio when game is paused/unpaused
         if (gameController.GetIsPaused() == true) {
-            print("Pausing");
             if (audioSource.isPlaying) {
                 audioSource.Pause();
             }
@@ -39,7 +37,7 @@ public class Monster : MonoBehaviour {
             }
         }
 
-        if (gameController.GetGameOver() == true) {
+        if (gameController.GetGameOver() == true) { // Stop the audio when game is over
             audioSource.Stop();
         }
     }
@@ -62,14 +60,13 @@ public class Monster : MonoBehaviour {
                     doodlerAnim.SetTrigger("Jump");
                 }
 
+                // Add velocity to doodler's Rigidbody2D
                 Vector2 velocity = rb.velocity;
                 velocity.y = jumpForce;
                 rb.velocity = velocity;
-
-                // Play jump sound
+                
                 audioSource.Stop(); // Stop loop
-                AudioManager.instance.PlaySoundEffect(monsterJumpedOn);
-                // TODO Create audiosource class
+                AudioManager.instance.PlaySoundEffect(monsterJumpedOn); // Play jump sound
 
                 Destroy(gameObject);
             }
@@ -77,7 +74,7 @@ public class Monster : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Player") && !collision.gameObject.GetComponent<Player>().usingPropeller) {
+        if (collision.CompareTag("Player") && !collision.gameObject.GetComponent<Player>().usingPropeller && !collision.gameObject.GetComponent<Player>().flipping) {
             Rigidbody2D doodlerRB = collision.GetComponent<Rigidbody2D>();
             doodlerRB.isKinematic = true; // Remove gravity from Doodler
             Player doodler = collision.GetComponent<Player>();
@@ -97,6 +94,7 @@ public class Monster : MonoBehaviour {
         } else if (collision.CompareTag("Projectile") || (collision.CompareTag("Player") && collision.gameObject.GetComponent<Player>().usingPropeller)) {
             AudioManager.instance.PlaySoundEffect(monsterShot);
             Destroy(gameObject);
+
         }
     }
 

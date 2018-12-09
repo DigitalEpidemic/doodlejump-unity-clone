@@ -15,9 +15,14 @@ public class BrownPlatform : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision) {
         // Add force when player falls from the top
         if (collision.relativeVelocity.y <= 0f) {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().TemporarilyMakeKinematic();
             GetComponent<EdgeCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<PlatformEffector2D>().enabled = false;
+
             
+
+
             fallDown = true;
         }
     }

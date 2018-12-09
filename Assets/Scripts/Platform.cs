@@ -80,16 +80,10 @@ public class Platform : MonoBehaviour {
                     transform.GetChild(0).GetComponent<PlatformEffector2D>().enabled = false;
                     transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 }
+                Destroy(gameObject);
 
-                // Destroy this platform if sound has finished
-                //if (!GetComponent<AudioSource>().isPlaying && !transform.GetChild(0).GetComponent<AudioSource>().isPlaying) {
-                    Destroy(gameObject);
-                //}
             } else {
-                // Destroy this platform if sound has finished
-                //if (!GetComponent<AudioSource>().isPlaying) {
-                    Destroy(gameObject);
-                //}
+                Destroy(gameObject);
             }
         }
     }
@@ -109,21 +103,21 @@ public class Platform : MonoBehaviour {
                     doodler.enableControls = true;
                     doodler.canShoot = true;
                     if (gameObject.name != "BrownPlatform(Clone)") {
+                        if (doodler.GetComponent<Rigidbody2D>().isKinematic) {
+                            doodler.GetComponent<Rigidbody2D>().isKinematic = false;
+                        }
                         doodlerAnim.SetTrigger("Jump");
+                        Vector2 velocity = rb.velocity;
+                        velocity.y = jumpForce;
+                        rb.velocity = velocity;
                     }
 
                 }
 
-                Vector2 velocity = rb.velocity;
-                velocity.y = jumpForce;
-                rb.velocity = velocity;
-
-                // Play sound
-                //GetComponent<AudioSource>().Play();
-                AudioManager.instance.PlaySoundEffect(platformSound);
+                AudioManager.instance.PlaySoundEffect(platformSound); // Play sound
 
                 // If current gameObject has an animation (Spring, trampoline, etc.)
-                if  (gameObject.GetComponent<Animator>() != null) { // (gameObject.name != "BrownPlatform(Clone)" &&
+                if (gameObject.GetComponent<Animator>() != null) {
                     boxX = 0f;
                     boxY = 0f;
                     GetComponent<Animator>().SetTrigger("Active");

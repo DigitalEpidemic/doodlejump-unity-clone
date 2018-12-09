@@ -6,8 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
     [SerializeField] float movementSpeed = 10f;
-    [SerializeField] GameObject spinningStars;
 
+    [SerializeField] GameObject spinningStars;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject projectile;
     [SerializeField] GameObject nose;
@@ -19,12 +19,13 @@ public class Player : MonoBehaviour {
     [SerializeField] AudioClip shootSound2;
     [SerializeField] AudioClip monsterShot;
 
-    [HideInInspector] public bool enableControls = false;
+    [HideInInspector] public bool enableControls = false; // TODO Encapsulate
 
     float movement = 0f;
     bool isFlipped = false;
     public bool canShoot = true;
     public bool usingPropeller = false;
+    public bool flipping = false;
 
     Rigidbody2D rb;
     SpriteRenderer doodler;
@@ -40,6 +41,21 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void TemporarilyMakeKinematic() {
+        StartCoroutine(MakeKinematic());
+    }
+
+    IEnumerator MakeKinematic() {
+        rb.isKinematic = true;
+        Vector2 velocity = rb.velocity;
+        velocity.y = -9.81f; // Apply gravity constant to kinematic Rigidbody
+        rb.velocity = velocity;
+
+        yield return new WaitForSeconds(0.001f);
+
+        rb.isKinematic = false;
+    }
+
     public bool GetIsFlipped() {
         return isFlipped;
     }
@@ -49,21 +65,22 @@ public class Player : MonoBehaviour {
         anim.runtimeAnimatorController = normalController;
     }
 
-    public void EnableDoodlerShooting() {
+    public void ResetDoodlerBools() {
         canShoot = true;
+        flipping = false;
+        GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
     public void ShowSpinningStars(bool decision) {
         if (decision) {
             spinningStars.SetActive(decision);
-            //print("Setting stars to: " + decision);
         }
     }
 
     void Update() {
         if (enableControls) {
-            movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f);
-            //movement = Input.GetAxis("Horizontal") * movementSpeed;
+            movement = Mathf.Lerp(movement, Input.acceleration.x * movementSpeed, Time.deltaTime * 8f); // For mobile
+            //movement = Input.GetAxis("Horizontal") * movementSpeed; // For Editor
 
             if (movement >= 0.5f) {
                 doodler.flipX = true;
@@ -75,7 +92,7 @@ public class Player : MonoBehaviour {
 
             if (Input.touchCount > 0) {
                 if (Input.GetTouch(0).phase == TouchPhase.Began) {
-                    if (!RectTransformUtility.RectangleContainsScreenPoint(gameController.GetPauseRect(), Input.GetTouch(0).position, Camera.main) && canShoot) {
+                    if (!RectTransformUtility.RectangleContainsScreenPoint(gameController.GetPauseRect(), Input.GetTouch(0).position, Camera.main) && canShoot) { // If pause button's area is not touched
                         StopAllCoroutines();
                         StartCoroutine(RotateAndShoot());
                     }
@@ -86,7 +103,7 @@ public class Player : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (enableControls) {
+        if (enableControls) { // Move Doodler if controls are enabled
             Vector2 velocity = rb.velocity;
             velocity.x = movement;
             rb.velocity = velocity;
@@ -114,7 +131,7 @@ public class Player : MonoBehaviour {
 
         // TODO Optimize with object pooling
         Instantiate(projectile, firePoint.position, Quaternion.Euler(0f, 0f, clampedRotZ)); // Instantiate projectile at firePoint position attached to Doodler
-        ChooseShootSound();
+        ChooseShootSound(); // Randomly pick shooting sound effects
 
         yield return new WaitForSeconds(1f);
 
@@ -130,7 +147,6 @@ public class Player : MonoBehaviour {
         } else {
             AudioManager.instance.PlaySoundEffect(shootSound2);
         }
-
     }
 
 }

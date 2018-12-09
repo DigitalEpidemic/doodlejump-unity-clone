@@ -93,7 +93,6 @@ public class GameController : MonoBehaviour {
 
         // Play falling sound
         AudioManager.instance.PlayGameOverSound();
-        //audioSource.Play();
 
         // Animate platforms
         platformsAnim.SetTrigger("GameOver");

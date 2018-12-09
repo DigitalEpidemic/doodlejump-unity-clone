@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4897517519762298}
   - component: {fileID: 212848301867432098}
-  - component: {fileID: 114142252611831388}
   m_Layer: 0
   m_Name: Nose
   m_TagString: Untagged
@@ -57,8 +56,8 @@ GameObject:
   - component: {fileID: 95056212356689564}
   - component: {fileID: 50981255455948206}
   - component: {fileID: 61874665125066176}
-  - component: {fileID: 114732339195016072}
   - component: {fileID: 68047870491763882}
+  - component: {fileID: 114732339195016072}
   m_Layer: 0
   m_Name: Doodler
   m_TagString: Player
@@ -168,7 +167,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.014703885, y: -0.69}
+  m_Offset: {x: 0.014703885, y: -0.68}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.75}
@@ -236,17 +235,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114142252611831388
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1183263904143386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e8a179e4d000d443beda045d50b883c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114732339195016072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,13 +250,16 @@ MonoBehaviour:
   spinningStars: {fileID: 1172677609103780}
   firePoint: {fileID: 4190766534689840}
   projectile: {fileID: 1398863206338724, guid: e5c6eaaf85598e748b29dee8d8602c57, type: 2}
-  projectileSpeed: 12.5
-  normalSprite: {fileID: 21300000, guid: 1b48b18e2f6f61244b256759f12d2ff2, type: 3}
-  shootingSprite: {fileID: 21300000, guid: 796d2e1ee91961940a89c87b04446840, type: 3}
   nose: {fileID: 1183263904143386}
   normalController: {fileID: 9100000, guid: 0f2faafc124ae9840a2352807b9d822c, type: 2}
   shootingController: {fileID: 9100000, guid: c47a6995998761544a36e27b4d386ad5, type: 2}
+  shootSound1: {fileID: 8300000, guid: fa0f8597b6aa946488585d272f51cfdf, type: 3}
+  shootSound2: {fileID: 8300000, guid: 274268f3a2bcd58459738348ab0025da, type: 3}
+  monsterShot: {fileID: 8300000, guid: 5393745333a5a4e48bccadc2cbb4ec67, type: 3}
   enableControls: 0
+  canShoot: 1
+  usingPropeller: 0
+  flipping: 0
 --- !u!212 &212437578033983174
 SpriteRenderer:
   m_ObjectHideFlags: 1

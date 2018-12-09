@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7624f01c53c73e7409cea7dd3c31328c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 16.5
+  jumpForce: 18
   monsterJumpedOn: {fileID: 8300000, guid: 7d392958a86fa8b4a84998f7767270f6, type: 3}
   monsterCrashedInto: {fileID: 8300000, guid: afc4af5b49d31a3419a699910ba76a3d, type: 3}
   monsterShot: {fileID: 8300000, guid: 5393745333a5a4e48bccadc2cbb4ec67, type: 3}
