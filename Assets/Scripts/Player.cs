@@ -35,7 +35,9 @@ public class Player : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         doodler = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        if (GameObject.Find("GameController") != null) { // Fixes null reference on main menu
+            gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        }
     }
 
     public bool GetIsFlipped() {
@@ -128,7 +130,7 @@ public class Player : MonoBehaviour {
         } else {
             AudioManager.instance.PlaySoundEffect(shootSound2);
         }
-        
+
     }
 
 }
