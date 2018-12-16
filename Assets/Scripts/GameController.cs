@@ -102,6 +102,8 @@ public class GameController : MonoBehaviour {
 
         // Disable pause button
         pauseButton.interactable = false;
+
+        player.SetActive(false);
     }
 
     public void PlayAgainButton() {

@@ -89,6 +89,7 @@ public class Monster : MonoBehaviour {
             // Make Doodler fall off the screen
             Vector2 velocity = doodlerRB.velocity;
             velocity.y = -9.81f; // Apply gravity constant to kinematic Rigidbody
+            velocity.x = 0f; // Stop doodler from scrolling across screen
             doodlerRB.velocity = velocity;
 
         } else if (collision.CompareTag("Projectile") || (collision.CompareTag("Player") && collision.gameObject.GetComponent<Player>().usingPropeller)) {
